@@ -1,0 +1,11 @@
+# robots.txt for Physiotherapie Amrum - Leonie Schlör
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://physiotherapie-amrum.de/sitemap.xml
+
+# Disallow duplicate content
+Disallow: /assets/
+Disallow: /api/
+

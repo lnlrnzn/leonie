@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Main colors - refined warm neutral palette */
+    --background: 30 30% 98%;
+    --foreground: 25 25% 12%;
+
+    /* Card and popover variations */
+    --card: 30 30% 98%;
+    --card-foreground: 25 25% 12%;
+    --popover: 30 30% 98%;
+    --popover-foreground: 25 25% 12%;
+
+    /* Primary - warm terracotta */
+    --primary: 22 85% 55%;
+    --primary-foreground: 30 30% 98%;
+
+    /* Secondary - soft sage green */
+    --secondary: 120 12% 88%;
+    --secondary-foreground: 120 12% 18%;
+
+    /* Additional color - calming blue */
+    --blue: 200 60% 60%;
+    --blue-foreground: 200 60% 98%;
+
+    /* Supporting colors */
+    --muted: 30 15% 92%;
+    --muted-foreground: 25 20% 40%;
+    --accent: 22 85% 55%;
+    --accent-foreground: 30 30% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 30 30% 98%;
+
+    /* UI elements */
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 22 85% 55%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Main colors - dark mode */
+    --background: 25 25% 12%;
+    --foreground: 30 15% 94%;
+
+    /* Card and popover variations */
+    --card: 25 25% 14%;
+    --card-foreground: 30 15% 94%;
+    --popover: 25 25% 14%;
+    --popover-foreground: 30 15% 94%;
+
+    /* Primary - warm terracotta adjusted for dark mode */
+    --primary: 22 65% 60%;
+    --primary-foreground: 30 30% 98%;
+
+    /* Secondary - soft sage green adjusted for dark mode */
+    --secondary: 120 7% 25%;
+    --secondary-foreground: 120 12% 90%;
+
+    /* Additional color - calming blue adjusted for dark mode */
+    --blue: 200 50% 50%;
+    --blue-foreground: 200 60% 98%;
+
+    /* Supporting colors adjusted for dark mode */
+    --muted: 25 20% 20%;
+    --muted-foreground: 30 15% 70%;
+    --accent: 22 65% 60%;
+    --accent-foreground: 30 30% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 30 15% 94%;
+
+    /* UI elements */
+    --border: 25 25% 22%;
+    --input: 25 25% 22%;
+    --ring: 22 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl font-bold md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl font-semibold md:text-2xl;
+  }
+  
+  p {
+    @apply leading-relaxed text-base md:text-lg;
+  }
+  
+  small {
+    @apply text-sm text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary/90 to-primary/70;
+  }
+  
+  .bg-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary/90 to-secondary/70;
+  }
+  
+  .bg-gradient-muted {
+    @apply bg-gradient-to-r from-muted to-muted/70;
+  }
+  
+  .bg-gradient-blue {
+    @apply bg-gradient-to-r from-blue/90 to-blue/70;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Image styles */
+  .img-rounded {
+    @apply rounded-xl overflow-hidden;
+  }
+  
+  .img-shadow {
+    @apply shadow-md;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+  }
+  
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+  }
+  
+  .section-title {
+    @apply relative mb-8 pb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-16 after:rounded after:bg-primary;
+  }
+}
+
