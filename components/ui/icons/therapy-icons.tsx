@@ -9,7 +9,8 @@ export interface TherapyIconProps extends React.SVGProps<SVGSVGElement> {
     | "rehabilitation" 
     | "manual-therapy" 
     | "acupuncture" 
-    | "wellness";
+    | "wellness"
+    | "exercise";
   /** Optional size in pixels (defaults to 24) */
   size?: number;
 }
@@ -109,6 +110,16 @@ function renderPath(name: TherapyIconProps["name"]) {
           <path d="M16 16c-.7 1-1.68 1.48-3 1.5-2.1.05-4-.95-4-4.55C9 9.3 11.75 7 14.5 6" />
           <path d="M8 3a4 4 0 0 0-4 4c0 1.85.7 3.2 2 4.5-1.4 1.3-2 2.65-2 4.5a4 4 0 0 0 4 4" />
           <path d="M8 16c.7 1 1.68 1.48 3 1.5 2.1.05 4-.95 4-4.55C15 9.3 12.25 7 9.5 6" />
+        </>
+      );
+    case "exercise":
+      return (
+        <>
+          <path d="M7 10h3V5L6.5 9.5" />
+          <path d="M16.5 9.5L13 5v5h3" />
+          <path d="M8 14l-2 2m10-2l2 2" />
+          <path d="M18 8.5a4 2 0 0 0-4 0m-8 0a4 2 0 0 1 4 0" />
+          <path d="M16 18a4 1 0 0 1-8 0" />
         </>
       );
     default:

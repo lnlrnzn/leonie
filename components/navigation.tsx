@@ -60,7 +60,7 @@ export default function Navigation() {
       <LoadingBar />
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href={{ pathname: "/" }} className="font-heading text-2xl font-bold text-primary">
-          <HeaderWord>Physiotherapie</HeaderWord> <HeaderWord>Amrum</HeaderWord>
+          <HeaderWord>Leonie</HeaderWord> <HeaderWord>Schlör</HeaderWord>
         </Link>
 
         {/* Desktop Navigation */}
@@ -99,7 +99,7 @@ export default function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            className="fixed inset-0 z-50 bg-background"
+            className="fixed inset-0 z-50 bg-background overflow-y-auto"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -107,18 +107,19 @@ export default function Navigation() {
           >
             <div className="container flex h-16 items-center justify-between px-4">
               <Link href={{ pathname: "/" }} className="font-heading text-2xl font-bold text-primary">
-                <HeaderWord>Physiotherapie</HeaderWord> <HeaderWord>Amrum</HeaderWord>
+                <HeaderWord>Leonie</HeaderWord> <HeaderWord>Schlör</HeaderWord>
               </Link>
               <Button 
                 variant="ghost" 
-                size="icon" 
+                size="icon"
+                className="h-10 w-10 rounded-full"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
                 <X className="h-6 w-6" />
               </Button>
             </div>
-            <nav className="container flex flex-col gap-4 px-4 py-8">
+            <nav className="container flex flex-col px-4 py-6">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.href.pathname}
@@ -129,7 +130,7 @@ export default function Navigation() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-lg font-medium py-2 transition-colors hover:text-primary block",
+                      "text-lg font-medium py-4 transition-colors hover:text-primary block border-b border-muted",
                       pathname === item.href.pathname ? "text-primary" : "text-muted-foreground",
                     )}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -139,6 +140,19 @@ export default function Navigation() {
                   </Link>
                 </motion.div>
               ))}
+              
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: navItems.length * 0.1 + 0.1 }}
+              >
+                <Button className="w-full bg-gradient-primary" size="lg" asChild>
+                  <Link href={{ pathname: "/kontakt" }}>
+                    Termin vereinbaren
+                  </Link>
+                </Button>
+              </motion.div>
             </nav>
           </motion.div>
         )}

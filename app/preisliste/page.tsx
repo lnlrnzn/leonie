@@ -3,24 +3,20 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { TherapyIcon } from "@/components/ui/icons/therapy-icons"
 import type { Metadata } from "next"
-import { ClientPriceSection, ClientPriceTableRow } from "./client-components"
+import { ClientPriceSection } from "./client-components"
 
 export const metadata: Metadata = {
-  title: "Preisliste | Physiotherapie Amrum",
-  description: "Übersicht über unsere Preise für Physiotherapie, Massagen und weitere Behandlungen auf Amrum.",
-  keywords: "Preisliste, Kosten, Physiotherapie, Massage, Amrum, Behandlungspreise",
+  title: "Preisliste | Leonie Schlör",
+  description: "Preisübersicht für meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage.",
+  keywords: "Preisliste, Kosten, Physiotherapie, Massage, Tapen, Gesundheitstraining, Amrum, Privatpatienten, Selbstzahler",
 }
 
-interface PriceCategory {
-  title: string
-  description: string
-  services: {
-    name: string
-    description?: string
-    duration: string
-    price: string
-    icon?: "massage" | "physiotherapy" | "rehabilitation" | "yoga" | "wellness" | "manual-therapy" | "acupuncture"
-  }[]
+interface Service {
+  name: string
+  description?: string
+  duration: string
+  price: string
+  icon?: "massage" | "physiotherapy" | "rehabilitation" | "yoga" | "wellness" | "manual-therapy" | "acupuncture"
 }
 
 export default function PriceListPage() {
@@ -33,128 +29,108 @@ export default function PriceListPage() {
             Preisliste
           </div>
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Unsere Behandlungspreise
+            Preisliste
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Transparente Preisübersicht für alle unsere Leistungen. Bei Fragen zur Kostenübernahme durch Ihre Krankenkasse beraten wir Sie gerne.
+            Nur Privatpatienten & Selbstzahler
           </p>
         </div>
       </ClientPriceSection>
 
-      {/* Price Categories */}
-      {priceCategories.map((category, index) => (
-        <ClientPriceSection 
-          key={category.title} 
-          className={index % 2 === 0 ? "bg-muted/30" : "bg-background"}
-        >
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">{category.title}</h2>
-              <p className="text-muted-foreground">{category.description}</p>
-            </div>
-            
-            <div className="overflow-hidden rounded-xl border">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-muted/50">
-                    <th className="px-4 py-3 text-left font-medium text-sm">Leistung</th>
-                    <th className="px-4 py-3 text-left font-medium text-sm hidden md:table-cell">Beschreibung</th>
-                    <th className="px-4 py-3 text-left font-medium text-sm">Dauer</th>
-                    <th className="px-4 py-3 text-right font-medium text-sm">Preis</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {category.services.map((service, serviceIndex) => (
-                    <ClientPriceTableRow
-                      key={service.name}
-                      name={service.name}
-                      description={service.description}
-                      duration={service.duration}
-                      price={service.price}
-                      icon={service.icon}
-                      index={serviceIndex}
-                      isEven={serviceIndex % 2 === 0}
-                    />
-                  ))}
-                </tbody>
-              </table>
-            </div>
+      {/* Price Cards Grid */}
+      <ClientPriceSection className="bg-muted/30">
+        <div className="space-y-8">
+          <div className="text-center space-y-2 max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Physiotherapie</h2>
+            <p className="text-muted-foreground">
+              Meine physiotherapeutischen Behandlungen werden individuell auf Ihre Bedürfnisse abgestimmt.
+            </p>
           </div>
-        </ClientPriceSection>
-      ))}
-
-      {/* Insurance Information */}
+          
+          <div className="grid gap-6 md:grid-cols-3">
+            {services.map((service, index) => (
+              <div 
+                key={service.name} 
+                className="rounded-xl border bg-background p-6 flex flex-col h-full shadow-sm transition-all hover:shadow-md"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <TherapyIcon name={service.icon || "physiotherapy"} className="h-6 w-6" />
+                  </div>
+                  <div className="text-right">
+                    <span className="text-2xl font-bold text-primary">{service.price}</span>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 flex-grow">
+                  <h3 className="text-xl font-bold">{service.name}</h3>
+                  {service.duration && (
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      {service.duration}
+                    </div>
+                  )}
+                  {service.description && (
+                    <p className="text-muted-foreground mt-2">
+                      {service.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ClientPriceSection>
+      
+      {/* Hausbesuche Information */}
       <ClientPriceSection>
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Kostenübernahme durch Krankenkassen</h2>
-            <p className="text-muted-foreground">
-              Viele unserer Leistungen können bei ärztlicher Verordnung von den gesetzlichen Krankenkassen übernommen werden. Die Höhe der Zuzahlung richtet sich nach den gesetzlichen Bestimmungen.
-            </p>
-            <p className="text-muted-foreground">
-              Für Privatversicherte und Beihilfeberechtigte gelten besondere Konditionen. Bitte sprechen Sie uns an oder kontaktieren Sie Ihre Versicherung für weitere Informationen.
-            </p>
-            <div className="pt-4">
-              <Button asChild>
-                <Link href={{ pathname: "/kontakt" }}>
-                  Termin vereinbaren
-                </Link>
-              </Button>
+        <div className="rounded-xl border bg-muted/30 p-8 md:p-10">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <p className="text-lg font-medium">
+                Alle Leistungen werden ausschließlich als Hausbesuche angeboten.
+              </p>
             </div>
-          </div>
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Zahlungsmöglichkeiten</h2>
-            <p className="text-muted-foreground">
-              Wir akzeptieren Barzahlung, EC-Karte und Überweisung. Die Bezahlung erfolgt in der Regel direkt nach der Behandlung.
-            </p>
-            <p className="text-muted-foreground">
-              Bei Rezepten mit Verordnung von mehreren Behandlungen ist auch eine Sammelrechnung am Ende der Behandlungsserie möglich.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
-                  <rect width="20" height="14" x="2" y="5" rx="2" />
-                  <line x1="2" x2="22" y1="10" y2="10" />
-                </svg>
-                <span>EC-Karte</span>
-              </div>
-              <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
-                  <rect width="16" height="12" x="4" y="6" rx="2" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                <span>Barzahlung</span>
-              </div>
-              <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                  <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-                  <path d="M12 11h4" />
-                  <path d="M12 16h4" />
-                  <path d="M8 11h.01" />
-                  <path d="M8 16h.01" />
-                </svg>
-                <span>Rechnung</span>
-              </div>
-            </div>
+            <Button asChild size="lg">
+              <Link href="/kontakt">
+                Termin vereinbaren
+              </Link>
+            </Button>
           </div>
         </div>
       </ClientPriceSection>
 
-      {/* Gift Certificates */}
+      {/* Insurance Information */}
       <ClientPriceSection className="bg-muted/30">
-        <div className="rounded-xl border bg-background p-8 md:p-12">
-          <div className="space-y-4 text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Geschenkgutscheine</h2>
-            <p className="text-muted-foreground">
-              Verschenken Sie Wohlbefinden und Gesundheit mit einem Gutschein für eine unserer Behandlungen. Gutscheine können für einen bestimmten Betrag oder für spezifische Leistungen ausgestellt werden.
-            </p>
-            <div className="pt-4">
-              <Button asChild>
-                <Link href={{ pathname: "/kontakt" }}>
-                  Gutschein anfragen
-                </Link>
-              </Button>
+        <div className="rounded-xl border bg-background p-8 md:p-10">
+          <div className="space-y-6 max-w-3xl mx-auto">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                  <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+                  <path d="M13 5v2" />
+                  <path d="M13 17v2" />
+                  <path d="M13 11v2" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold tracking-tighter">Wichtige Information für Privatversicherte Patienten</h2>
+            </div>
+            <div className="pl-16">
+              <p className="text-muted-foreground">
+                Privat versicherte Patienten bekommen ebenfalls nach der Behandlung eine Rechnung direkt von mir. Diese ist zunächst von dir zu begleichen. Um eine Erstattung der Kosten zu erhalten, musst du die Rechnung bei deiner privaten Krankenkasse einreichen.
+              </p>
+              <p className="text-muted-foreground mt-4">
+                Bitte beachte, dass die Höhe der Erstattung je nach Tarif und Vertrag der Versicherung variieren kann. Sollte es Fragen bezüglich der Kostenerstattung geben, dann wende dich bitte direkt an deine Krankenkasse.
+              </p>
             </div>
           </div>
         </div>
@@ -163,9 +139,9 @@ export default function PriceListPage() {
       {/* CTA */}
       <ClientPriceSection>
         <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Haben Sie Fragen zu unseren Preisen?</h2>
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Haben Sie Fragen zu meinen Preisen?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Wir beraten Sie gerne persönlich zu unseren Leistungen und Preisen. Kontaktieren Sie uns telefonisch oder vereinbaren Sie einen Beratungstermin.
+            Ich berate Sie gerne persönlich zu meinen Leistungen und Preisen. Kontaktieren Sie mich telefonisch oder vereinbaren Sie einen Beratungstermin.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild>
@@ -185,153 +161,27 @@ export default function PriceListPage() {
   )
 }
 
-const priceCategories: PriceCategory[] = [
+const services: Service[] = [
   {
-    title: "Physiotherapie",
-    description: "Unsere physiotherapeutischen Behandlungen werden individuell auf Ihre Bedürfnisse abgestimmt.",
-    services: [
-      {
-        name: "Physiotherapie",
-        description: "Individuelle Behandlung zur Schmerzlinderung und Verbesserung der Beweglichkeit",
-        duration: "45-60 Min",
-        price: "60,00 €",
-        icon: "physiotherapy"
-      },
-      {
-        name: "Manuelle Therapie",
-        description: "Gezielte Behandlung von Funktionsstörungen des Bewegungsapparates",
-        duration: "45-60 Min",
-        price: "70,00 €",
-        icon: "manual-therapy"
-      },
-      {
-        name: "Krankengymnastik",
-        description: "Übungen zur Stärkung der Muskulatur und Verbesserung der Koordination",
-        duration: "45-60 Min",
-        price: "60,00 €",
-        icon: "rehabilitation"
-      },
-      {
-        name: "Krankengymnastik am Gerät",
-        description: "Gezielte Übungen mit therapeutischen Geräten",
-        duration: "60 Min",
-        price: "65,00 €"
-      },
-      {
-        name: "Lymphdrainage",
-        description: "Sanfte Massagetechnik zur Entstauung des Gewebes",
-        duration: "45-60 Min",
-        price: "60,00 €",
-        icon: "wellness"
-      }
-    ]
+    name: "Gesundheitstraining",
+    description: "Gezielte Bewegungstherapie zur Verbesserung körperlicher Defizite und Schmerzlinderung",
+    duration: "30 Min",
+    price: "55,00 €",
+    icon: "rehabilitation"
   },
   {
-    title: "Massagen",
-    description: "Entspannende und therapeutische Massagen zur Lösung von Verspannungen und zur Förderung der Durchblutung.",
-    services: [
-      {
-        name: "Klassische Massage",
-        description: "Lösung von Muskelverspannungen und Förderung der Durchblutung",
-        duration: "30 Min",
-        price: "40,00 €",
-        icon: "massage"
-      },
-      {
-        name: "Klassische Massage",
-        description: "Lösung von Muskelverspannungen und Förderung der Durchblutung",
-        duration: "45 Min",
-        price: "50,00 €",
-        icon: "massage"
-      },
-      {
-        name: "Rückenmassage",
-        description: "Gezielte Massage des Rückenbereichs",
-        duration: "20 Min",
-        price: "30,00 €"
-      },
-      {
-        name: "Ganzkörpermassage",
-        description: "Umfassende Massage des gesamten Körpers",
-        duration: "60 Min",
-        price: "70,00 €"
-      },
-      {
-        name: "Fußreflexzonenmassage",
-        description: "Stimulation der Reflexzonen an den Füßen",
-        duration: "30 Min",
-        price: "40,00 €"
-      }
-    ]
+    name: "Tapen",
+    description: "Gezielte Behandlung mit Tapes zur Aktivierung der Selbstheilungskräfte des Körpers",
+    duration: "",
+    price: "10,00 €",
+    icon: "manual-therapy"
   },
   {
-    title: "Wellness & Entspannung",
-    description: "Ganzheitliche Behandlungen zur Stressreduktion und Förderung des allgemeinen Wohlbefindens.",
-    services: [
-      {
-        name: "Aromatherapie-Massage",
-        description: "Massage mit ätherischen Ölen",
-        duration: "45 Min",
-        price: "60,00 €"
-      },
-      {
-        name: "Hot-Stone-Massage",
-        description: "Massage mit warmen Basaltsteinen",
-        duration: "60 Min",
-        price: "75,00 €"
-      },
-      {
-        name: "Entspannungsmassage",
-        description: "Sanfte Massage zur Stressreduktion",
-        duration: "45 Min",
-        price: "55,00 €",
-        icon: "wellness"
-      },
-      {
-        name: "Gesichts- und Kopfmassage",
-        description: "Entspannende Massage für Gesicht, Kopf und Nacken",
-        duration: "30 Min",
-        price: "40,00 €"
-      }
-    ]
-  },
-  {
-    title: "Yoga & Pilates",
-    description: "Kurse zur Stärkung von Körper und Geist, Verbesserung der Körperhaltung und Förderung der inneren Balance.",
-    services: [
-      {
-        name: "Einzelstunde Yoga",
-        description: "Individuell angepasste Yogastunde",
-        duration: "60 Min",
-        price: "70,00 €",
-        icon: "yoga"
-      },
-      {
-        name: "Gruppenkurs Yoga",
-        description: "Yoga in kleinen Gruppen (max. 6 Personen)",
-        duration: "90 Min",
-        price: "15,00 €",
-        icon: "yoga"
-      },
-      {
-        name: "Einzelstunde Pilates",
-        description: "Individuell angepasste Pilatesstunde",
-        duration: "60 Min",
-        price: "70,00 €"
-      },
-      {
-        name: "Gruppenkurs Pilates",
-        description: "Pilates in kleinen Gruppen (max. 6 Personen)",
-        duration: "60 Min",
-        price: "15,00 €"
-      },
-      {
-        name: "10er-Karte Gruppenkurse",
-        description: "Gültig für alle Gruppenkurse",
-        duration: "60-90 Min",
-        price: "130,00 €"
-      }
-    ]
+    name: "Massage",
+    description: "Manuelle Behandlungstechnik zur Verbesserung der Durchblutung, Schmerzlinderung und Entspannung",
+    duration: "40 Min",
+    price: "70,00 €",
+    icon: "massage"
   }
 ]
 

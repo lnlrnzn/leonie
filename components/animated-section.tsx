@@ -1,67 +1,84 @@
 "use client"
 
-import type React from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import React, { useEffect, useState } from "react"
 
-interface AnimatedSectionProps {
+export type AnimatedSectionProps = {
   children: React.ReactNode
   className?: string
   delay?: number
   direction?: "up" | "down" | "left" | "right"
+  isHero?: boolean // Explicit prop to indicate hero section
 }
 
-export default function AnimatedSection({ 
-  children, 
+type VariantProps = {
+  opacity: number
+  y?: number
+  x?: number
+}
+
+const getVariants = (direction: string = "up", distance: number = 40) => {
+  const variants: {
+    hidden: VariantProps
+    visible: VariantProps
+  } = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
+
+  if (direction === "up") {
+    variants.hidden = { ...variants.hidden, y: distance }
+    variants.visible = { ...variants.visible, y: 0 }
+  } else if (direction === "down") {
+    variants.hidden = { ...variants.hidden, y: -distance }
+    variants.visible = { ...variants.visible, y: 0 }
+  } else if (direction === "left") {
+    variants.hidden = { ...variants.hidden, x: distance }
+    variants.visible = { ...variants.visible, x: 0 }
+  } else if (direction === "right") {
+    variants.hidden = { ...variants.hidden, x: -distance }
+    variants.visible = { ...variants.visible, x: 0 }
+  }
+
+  return variants
+}
+
+export function AnimatedSection({
+  children,
   className,
   delay = 0,
-  direction = "up"
+  direction = "up",
+  isHero = false // Default to false
 }: AnimatedSectionProps) {
-  // Define animation variants based on direction
-  const getVariants = () => {
-    const distance = 50;
-    
-    const variants = {
-      hidden: {},
-      visible: {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        transition: {
-          duration: 0.6,
-          ease: [0.22, 1, 0.36, 1],
-          delay: delay * 0.1
-        }
-      }
-    };
-    
-    switch (direction) {
-      case "up":
-        variants.hidden = { opacity: 0, y: distance };
-        break;
-      case "down":
-        variants.hidden = { opacity: 0, y: -distance };
-        break;
-      case "left":
-        variants.hidden = { opacity: 0, x: distance };
-        break;
-      case "right":
-        variants.hidden = { opacity: 0, x: -distance };
-        break;
-      default:
-        variants.hidden = { opacity: 0, y: distance };
+  // Also check className for hero sections for backward compatibility
+  const isHeroSection = isHero || className?.includes('pt-');
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  
+  // For hero sections, trigger animation immediately
+  useEffect(() => {
+    if (isHeroSection) {
+      // Small timeout to ensure DOM is ready
+      const timer = setTimeout(() => setShouldAnimate(true), 50);
+      return () => clearTimeout(timer);
     }
-    
-    return variants;
-  };
+  }, [isHeroSection]);
+
+  const variants = getVariants(direction)
 
   return (
     <motion.div
+      className={cn("w-full", className)}
+      variants={variants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={getVariants()}
-      className={cn(className)}
+      {...(isHeroSection 
+        ? { animate: shouldAnimate ? "visible" : "hidden" }
+        : { whileInView: "visible", viewport: { once: true, amount: 0.2 } }
+      )}
+      transition={{
+        duration: 0.5,
+        delay: delay,
+      }}
     >
       {children}
     </motion.div>

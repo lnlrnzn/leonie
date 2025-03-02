@@ -15,10 +15,11 @@ function LoadingBarContent() {
     setIsLoading(true)
     setProgress(0)
     
+    // Complete loading faster (300ms instead of 500ms)
     const timer = setTimeout(() => {
       setIsLoading(false)
       setProgress(100)
-    }, 500)
+    }, 300)
     
     return () => clearTimeout(timer)
   }, [pathname, searchParams])
@@ -27,10 +28,11 @@ function LoadingBarContent() {
     if (isLoading) {
       const timer = setInterval(() => {
         setProgress((oldProgress) => {
-          const diff = Math.random() * 10
+          // Increase the rate of progress (15 instead of 10)
+          const diff = Math.random() * 15
           return Math.min(oldProgress + diff, 90)
         })
-      }, 300)
+      }, 150) // Faster updates (150ms instead of 300ms)
 
       return () => {
         clearInterval(timer)
@@ -43,7 +45,7 @@ function LoadingBarContent() {
   return (
     <div className="fixed top-0 left-0 right-0 h-1 bg-nude-200 z-50">
       <div
-        className="h-full bg-primary transition-all duration-500 ease-out hover:bg-nude-600"
+        className="h-full bg-primary transition-all duration-300 ease-out hover:bg-nude-600"
         style={{ width: `${progress}%` }}
       />
     </div>

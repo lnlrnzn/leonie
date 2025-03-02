@@ -12,7 +12,6 @@ export interface Testimonial {
   content: string
   author: string
   role?: string
-  avatar?: string
   rating?: number
 }
 
@@ -27,7 +26,7 @@ export interface TestimonialsSectionProps {
  * A testimonials section with a carousel to showcase client reviews
  */
 export function TestimonialsSection({
-  title = "Das sagen unsere Kunden",
+  title = "Das sagen meine Kunden",
   subtitle = "Erfahrungen & Bewertungen",
   testimonials = defaultTestimonials,
   className,
@@ -160,16 +159,6 @@ export function TestimonialsSection({
                   "{testimonials[currentIndex].content}"
                 </blockquote>
                 <div className="flex items-center">
-                  {testimonials[currentIndex].avatar && (
-                    <div className="relative h-14 w-14 overflow-hidden rounded-full mr-4">
-                      <Image
-                        src={testimonials[currentIndex].avatar}
-                        alt={testimonials[currentIndex].author}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
                   <div>
                     <div className="font-semibold">
                       {testimonials[currentIndex].author}
@@ -222,28 +211,25 @@ const defaultTestimonials: Testimonial[] = [
   {
     id: "testimonial-1",
     content:
-      "Die Behandlungen bei Physiotherapie Amrum haben mir wirklich geholfen, meine chronischen Rückenschmerzen zu lindern. Die professionelle und einfühlsame Betreuung ist einfach hervorragend!",
-    author: "Sabine Müller",
-    role: "Patientin seit 2019",
-    avatar: "/images/testimonials/avatar1.jpg",
+      "Nach kurzer unproblematischer Terminabsprache erhielt ich mehrere Behandlungen. Leonie ging mit großer Fachkompetenz und ihrer freundlichen, zugewandten und einfühlsamen Kunst auf meine krankheitsbedingten Einschränkungen ein. Ihre zusätzlichen motivierenden Übungsempfehlungen sind super alltagstauglich. Ich kann Leonie nur weiterempfehlen. Vielen lieben Dank nochmal und alles Gute!",
+    author: "M HA",
+    role: "",
     rating: 5,
   },
   {
     id: "testimonial-2",
     content:
-      "Nach meiner Knie-OP war ich unsicher, ob ich jemals wieder schmerzfrei gehen könnte. Dank der gezielten Therapie und den individuellen Übungen, die mir hier gezeigt wurden, kann ich heute wieder problemlos Sport treiben.",
-    author: "Thomas Weber",
-    role: "Sportler",
-    avatar: "/images/testimonials/avatar2.jpg",
+      "Ich habe nach einem Verdrehungstrauma einen Meniskusriss im rechten Knie und wurde von Leonie 7 mal kompetent behandelt. Erst langsam durch Lösen der muskulären Verklebungen, dann Kräftigung der Muskulatur rund ums Knie zur Stabilisierung des Gelenks. Nach 10 Tagen hatte ich weniger Schmerzen und eine deutlich bessere Beweglichkeit. Danke für die Lebensqualität und das wahrscheinliche Aufschieben der Arthroskopie, falls sie überhaupt nötig wird. Alles Gute Leonie",
+    author: "Beatrix Holthuysen",
+    role: "",
     rating: 5,
   },
   {
     id: "testimonial-3",
     content:
-      "Die Kombination aus klassischer Physiotherapie und modernen Behandlungsmethoden ist wirklich beeindruckend. Die entspannte Atmosphäre und das freundliche Team machen jeden Besuch angenehm.",
-    author: "Maria Schmidt",
-    role: "Regelmäßige Kundin",
-    avatar: "/images/testimonials/avatar3.jpg",
-    rating: 4,
-  },
+      "Sehr kompetent, unkompliziert und freundlich :-) Wir hatten innerhalb eines Tages einen Termin für eine Massage in unserer Ferienwohnung in Norddorf. Leonie ist ausgebildete Physiotherapeutin und ist sehr gut auf unsere Wünsche eingegangen. Wir empfehlen sie gerne weiter und ihr werdet bei eurem nächsten Besuch auf Amrum bestimmt wieder bei Leonie zur Massage gehen.",
+    author: "Michael Heck",
+    role: "",
+    rating: 5,
+  }
 ] 

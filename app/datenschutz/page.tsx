@@ -3,16 +3,74 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 import { ClientLegalSection } from "../shared-client-components"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Datenschutz | Physiotherapie Amrum",
-  description: "Datenschutzerklärung der Physiotherapie-Praxis auf Amrum. Erfahren Sie, wie wir mit Ihren persönlichen Daten umgehen.",
-  keywords: "Datenschutz, Physiotherapie, Amrum, DSGVO, Datenschutzerklärung, Privatsphäre",
+  title: "Datenschutz | Leonie Schlör",
+  description: "Datenschutzerklärung der Physiotherapie-Praxis von Leonie Schlör auf Amrum. Erfahren Sie, wie wir mit Ihren persönlichen Daten umgehen.",
+  keywords: "Datenschutz, Physiotherapie, Amrum, DSGVO, Datenschutzerklärung, Privatsphäre, Leonie Schlör",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true
+  },
+  alternates: {
+    canonical: "https://physiotherapie-amrum.de/datenschutz"
+  }
 }
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* SEO Helper: Breadcrumbs Schema */}
+      <Script
+        id="schema-breadcrumbs-privacy"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://physiotherapie-amrum.de"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Datenschutzerklärung",
+                "item": "https://physiotherapie-amrum.de/datenschutz"
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* Schema.org WebPage für rechtliche Infos */}
+      <Script
+        id="schema-privacy-policy"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Datenschutzerklärung - Physiotherapie Amrum",
+            "description": "Informationen zum Schutz Ihrer personenbezogenen Daten gemäß DSGVO",
+            "url": "https://physiotherapie-amrum.de/datenschutz",
+            "mainEntity": {
+              "@type": "WebContent",
+              "headline": "Datenschutzerklärung der Physiotherapie-Praxis auf Amrum",
+              "about": {
+                "@type": "Thing",
+                "name": "Datenschutz und DSGVO"
+              }
+            }
+          })
+        }}
+      />
+
       {/* Hero Section */}
       <ClientLegalSection className="pt-24 md:pt-32">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -32,109 +90,123 @@ export default function PrivacyPolicyPage() {
       <ClientLegalSection className="bg-muted/30">
         <div className="max-w-3xl mx-auto">
           <div className="rounded-xl border bg-background p-6 md:p-8 space-y-6">
+            {/* Section 1 */}
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">1. Datenschutz auf einen Blick</h2>
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Allgemeine Hinweise</h3>
-                <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
-                
-                <h3 className="text-lg font-semibold">Datenerfassung auf dieser Website</h3>
-                <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
-                <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
-
-                <h3 className="text-lg font-semibold">Wie erfassen wir Ihre Daten?</h3>
-                <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</p>
-                <p>Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.</p>
-
-                <h3 className="text-lg font-semibold">Wofür nutzen wir Ihre Daten?</h3>
-                <p>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.</p>
-
-                <h3 className="text-lg font-semibold">Welche Rechte haben Sie bezüglich Ihrer Daten?</h3>
-                <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.</p>
-                <p>Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
-              </div>
+              <h2 className="text-xl font-bold">1. Allgemeine Hinweise und Pflichtinformationen</h2>
+              <p>
+                Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften – insbesondere der EU-Datenschutz-Grundverordnung (DSGVO) – sowie dieser Datenschutzerklärung.
+              </p>
+              <p>
+                Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Diese Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen.
+              </p>
+              <p>
+                Bitte beachten Sie, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+              </p>
+              <p>
+                Ihnen stehen umfangreiche Rechte in Bezug auf Ihre personenbezogenen Daten zu – darunter das Recht auf Auskunft, Berichtigung, Löschung und Widerspruch. Bei Fragen zum Datenschutz können Sie sich jederzeit an uns wenden.
+              </p>
             </div>
 
+            {/* Section 2 */}
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">2. Hosting</h2>
-              <div className="space-y-2">
-                <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
-                <h3 className="text-lg font-semibold">Externes Hosting</h3>
-                <p>Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
-                <p>Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).</p>
-                <p>Unser Hoster wird Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.</p>
-              </div>
+              <h2 className="text-xl font-bold">2. Verantwortliche Stelle</h2>
+              <p>
+                Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+              </p>
+              <p>
+                <strong>Leonie Schlör</strong><br />
+                Uasterstigh 3<br />
+                25946 Nebel (Amrum)<br />
+                Deutschland
+              </p>
+              <p>
+                Telefon: +49 173 6414846<br />
+                E-Mail: leonieschloer.physio@gmail.com
+              </p>
+              <p>
+                Verantwortliche Stelle ist die Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet.
+              </p>
             </div>
 
+            {/* Section 3 */}
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">3. Allgemeine Hinweise und Pflichtinformationen</h2>
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Datenschutz</h3>
-                <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
-                <p>Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.</p>
-                <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+              <h2 className="text-xl font-bold">3. Datenerfassung auf dieser Website</h2>
+              {/* Vercel Analytics */}
+              <h3 className="text-lg font-semibold">Vercel Analytics</h3>
+              <p>
+                Unsere Website nutzt den Analysedienst <strong>Vercel Analytics</strong> zur anonymisierten statistischen Auswertung der Seitenaufrufe. Dabei werden technische Daten wie aufgerufene Seiten, Zugriffszeitpunkte, verwendeter Browser und grobe Standortinformationen (Land/Region) verarbeitet. Ihre IP-Adresse wird dabei in anonymisierter Form verarbeitet – es werden keine dauerhaften Identifier gespeichert und keine Cookies verwendet.
+              </p>
+              <p>
+                Vercel Analytics respektiert die "Do Not Track"‐Einstellung Ihres Browsers. Die Speicherung und Verarbeitung erfolgt auf Servern innerhalb der EU. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO.
+              </p>
 
-                <h3 className="text-lg font-semibold">Hinweis zur verantwortlichen Stelle</h3>
-                <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-                <p>Physiotherapie Amrum<br />
-                Leonie Schlör<br />
-                Hauptstraße 123<br />
-                25946 Nebel auf Amrum</p>
-                <p>Telefon: +49 (0) 4682 123456<br />
-                E-Mail: info@physiotherapie-amrum.de</p>
-                <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</p>
+              {/* Cookies */}
+              <h3 className="text-lg font-semibold">Cookies</h3>
+              <p>
+                Unsere Website verwendet nach aktuellem Stand nur technisch notwendige Cookies. Diese Cookies sind für den Betrieb der Website erforderlich und benötigen keine Einwilligung. Sollte sich dies ändern und wir zukünftig zustimmungspflichtige Cookies einsetzen, werden wir eine entsprechende Consent-Lösung implementieren.
+              </p>
 
-                <h3 className="text-lg font-semibold">Speicherdauer</h3>
-                <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.</p>
+              {/* Google Fonts */}
+              <h3 className="text-lg font-semibold">Google Fonts</h3>
+              <p>
+                Zur einheitlichen Darstellung von Schriftarten nutzen wir <strong>Google Web Fonts</strong>. Beim Aufruf unserer Seiten wird eine Verbindung zu den Servern von Google hergestellt, wobei technische Daten wie Ihre IP-Adresse übertragen werden. Google speichert dabei keine Cookies für die Darstellung der Fonts. Die Nutzung von Google Fonts erfolgt auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).
+              </p>
 
-                <h3 className="text-lg font-semibold">Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
-                <p>Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TTDSG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung informiert.</p>
+              {/* Kontaktformular */}
+              <h3 className="text-lg font-semibold">Kontaktformular</h3>
+              <p>
+                Wenn Sie uns über das Kontaktformular kontaktieren, werden Ihre Angaben (z. B. Name, E-Mail-Adresse, Telefonnummer und Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet und in <strong>Airtable</strong> gespeichert. Die Speicherung erfolgt für mindestens zwei Jahre. Die Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht ohne Ihre Einwilligung an Dritte weitergegeben. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO.
+              </p>
 
-                <h3 className="text-lg font-semibold">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
-                <p>Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
-
-                <h3 className="text-lg font-semibold">Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h3>
-                <p>WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT. E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIE VERARBEITUNG IHRER PERSONENBEZOGENEN DATEN WIDERSPRUCH EINZULEGEN; DIES GILT AUCH FÜR EIN AUF DIESE BESTIMMUNGEN GESTÜTZTES PROFILING. DIE JEWEILIGE RECHTSGRUNDLAGE, AUF DENEN EINE VERARBEITUNG BERUHT, ENTNEHMEN SIE DIESER DATENSCHUTZERKLÄRUNG. WENN SIE WIDERSPRUCH EINLEGEN, WERDEN WIR IHRE BETROFFENEN PERSONENBEZOGENEN DATEN NICHT MEHR VERARBEITEN, ES SEI DENN, WIR KÖNNEN ZWINGENDE SCHUTZWÜRDIGE GRÜNDE FÜR DIE VERARBEITUNG NACHWEISEN, DIE IHRE INTERESSEN, RECHTE UND FREIHEITEN ÜBERWIEGEN ODER DIE VERARBEITUNG DIENT DER GELTENDMACHUNG, AUSÜBUNG ODER VERTEIDIGUNG VON RECHTSANSPRÜCHEN (WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO).</p>
-                <p>WERDEN IHRE PERSONENBEZOGENEN DATEN VERARBEITET, UM DIREKTWERBUNG ZU BETREIBEN, SO HABEN SIE DAS RECHT, JEDERZEIT WIDERSPRUCH GEGEN DIE VERARBEITUNG SIE BETREFFENDER PERSONENBEZOGENER DATEN ZUM ZWECKE DERARTIGER WERBUNG EINZULEGEN; DIES GILT AUCH FÜR DAS PROFILING, SOWEIT ES MIT SOLCHER DIREKTWERBUNG IN VERBINDUNG STEHT. WENN SIE WIDERSPRECHEN, WERDEN IHRE PERSONENBEZOGENEN DATEN ANSCHLIESSEND NICHT MEHR ZUM ZWECKE DER DIREKTWERBUNG VERWENDET (WIDERSPRUCH NACH ART. 21 ABS. 2 DSGVO).</p>
-
-                <h3 className="text-lg font-semibold">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
-                <p>Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.</p>
-
-                <h3 className="text-lg font-semibold">Recht auf Datenübertragbarkeit</h3>
-                <p>Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.</p>
-
-                <h3 className="text-lg font-semibold">SSL- bzw. TLS-Verschlüsselung</h3>
-                <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p>
-                <p>Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</p>
-
-                <h3 className="text-lg font-semibold">Auskunft, Löschung und Berichtigung</h3>
-                <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
-
-                <h3 className="text-lg font-semibold">Recht auf Einschränkung der Verarbeitung</h3>
-                <p>Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:</p>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li>Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-                  <li>Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen.</li>
-                  <li>Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-                  <li>Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-                </ul>
-                <p>Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.</p>
-              </div>
+              {/* CRM */}
+              <h3 className="text-lg font-semibold">Kundenverwaltung (CRM)</h3>
+              <p>
+                Sollten Sie unsere Kundin bzw. unser Kunde werden, speichern wir Ihre Kontaktdaten und weitere für die Kundenverwaltung notwendige Informationen in einem internen System. Die Verarbeitung erfolgt zur Erfüllung des Vertrages (Art. 6 Abs. 1 lit. b DSGVO) bzw. auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).
+              </p>
             </div>
 
+            {/* Section 4 */}
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">4. Datenerfassung auf dieser Website</h2>
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Kontaktformular</h3>
-                <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
-                <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.</p>
-                <p>Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.</p>
+              <h2 className="text-xl font-bold">4. Hosting</h2>
+              <p>
+                Diese Website wird bei <strong>Vercel</strong> gehostet. Die Datenverarbeitung durch Vercel erfolgt auf Servern innerhalb der EU. Beim Aufruf unserer Website werden automatisch bestimmte Zugriffsdaten (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, Browsertyp) in Server-Logfiles erfasst. Diese Daten dienen der technischen Bereitstellung sowie der Sicherheit und werden ausschließlich zur Erfüllung unserer vertraglichen und gesetzlichen Pflichten verarbeitet. Wir haben einen Vertrag zur Auftragsverarbeitung mit Vercel geschlossen.
+              </p>
+            </div>
 
-                <h3 className="text-lg font-semibold">Anfrage per E-Mail, Telefon oder Telefax</h3>
-                <p>Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
-                <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.</p>
-                <p>Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.</p>
-              </div>
+            {/* Section 5 */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold">5. Rechte der betroffenen Personen</h2>
+              <p>
+                Sie haben das Recht, unentgeltlich Auskunft über die Herkunft, den Empfänger und den Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Zudem haben Sie das Recht, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer Daten zu verlangen sowie der Verarbeitung zu widersprechen. Sollten Sie in die Verarbeitung Ihrer Daten eingewilligt haben, können Sie diese Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
+              </p>
+              <p>
+                Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+              </p>
+            </div>
+
+            {/* Section 6 */}
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold">6. Datenschutzmaßnahmen und Sicherheit</h2>
+              <p>
+                Wir setzen umfangreiche technische und organisatorische Maßnahmen ein, um Ihre Daten vor unberechtigtem Zugriff, Verlust oder Zerstörung zu schützen. Dazu gehören unter anderem:
+              </p>
+              <ul className="list-disc pl-6 space-y-1">
+                <li>SSL-/TLS-Verschlüsselung zur sicheren Datenübertragung</li>
+                <li>Zugriffsbeschränkungen auf Ihre Daten (nur autorisierte Personen haben Zugriff)</li>
+                <li>Starke Passwörter und, wo möglich, Mehr-Faktor-Authentifizierung</li>
+                <li>Regelmäßige Software-Updates und Sicherheitsüberprüfungen</li>
+                <li>Verfahren zur Datensparsamkeit und -minimierung</li>
+              </ul>
+              <p>
+                Trotz dieser Maßnahmen kann ein absoluter Schutz Ihrer Daten nicht garantiert werden.
+              </p>
+            </div>
+
+            {/* Update Notice */}
+            <div className="space-y-4">
+              <p>
+                <strong>Stand dieser Datenschutzerklärung:</strong> März 2025. Wir behalten uns vor, diese Erklärung bei Änderungen der gesetzlichen Anforderungen oder unserer Dienstleistungen anzupassen.
+              </p>
             </div>
           </div>
         </div>
@@ -158,4 +230,4 @@ export default function PrivacyPolicyPage() {
       </ClientLegalSection>
     </main>
   )
-} 
+}

@@ -3,16 +3,51 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 import { ClientLegalSection } from "../shared-client-components"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Impressum | Physiotherapie Amrum",
-  description: "Impressum und rechtliche Informationen der Physiotherapie-Praxis auf Amrum.",
-  keywords: "Impressum, Physiotherapie, Amrum, Kontaktdaten, Rechtliche Informationen",
+  title: "Impressum | Leonie Schlör",
+  description: "Impressum und rechtliche Informationen der Physiotherapie-Praxis von Leonie Schlör auf Amrum.",
+  keywords: "Impressum, Physiotherapie, Amrum, Kontaktdaten, Rechtliche Informationen, Leonie Schlör",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true
+  },
+  alternates: {
+    canonical: "https://physiotherapie-amrum.de/impressum"
+  }
 }
 
 export default function ImprintPage() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* SEO Helper: Breadcrumbs Schema */}
+      <Script
+        id="schema-breadcrumbs"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://physiotherapie-amrum.de"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Impressum",
+                "item": "https://physiotherapie-amrum.de/impressum"
+              }
+            ]
+          })
+        }}
+      />
+      
       {/* Hero Section */}
       <ClientLegalSection className="pt-24 md:pt-32">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -35,9 +70,8 @@ export default function ImprintPage() {
             <div className="space-y-4">
               <h2 className="text-xl font-bold">Angaben gemäß § 5 TMG</h2>
               <div className="space-y-2">
-                <p>Physiotherapie Amrum</p>
                 <p>Leonie Schlör</p>
-                <p>Hauptstraße 123</p>
+                <p>Uasterstigh 3</p>
                 <p>25946 Nebel auf Amrum</p>
               </div>
             </div>
@@ -45,34 +79,57 @@ export default function ImprintPage() {
             <div className="space-y-4">
               <h2 className="text-xl font-bold">Kontakt</h2>
               <div className="space-y-2">
-                <p>Telefon: +49 (0) 4682 123456</p>
-                <p>E-Mail: info@physiotherapie-amrum.de</p>
+                <p>Telefon: +49 173 6414846</p>
+                <p>E-Mail: leonieschloer.physio@gmail.com</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+              <h2 className="text-xl font-bold">Berufsbezeichnung</h2>
               <div className="space-y-2">
-                <p>Berufsbezeichnung: Staatlich anerkannte Physiotherapeutin</p>
-                <p>Verliehen in: Deutschland</p>
-                <p>Zuständige Aufsichtsbehörde: Gesundheitsamt Nordfriesland</p>
+                <p>Physiotherapeutin (Freiberuflerin)</p>
+                <p>Staat, in dem die Berufsbezeichnung verliehen wurde: Bundesrepublik Deutschland</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">Umsatzsteuer-ID</h2>
+              <h2 className="text-xl font-bold">Zuständige Aufsichtsbehörde</h2>
               <div className="space-y-2">
-                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:</p>
-                <p>DE123456789</p>
+                <p>Gesundheitsamt Kreis Nordfriesland</p>
+                <p>Damm 8</p>
+                <p>25813 Husum</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-xl font-bold">Streitschlichtung</h2>
+              <h2 className="text-xl font-bold">Berufsrechtliche Regelungen</h2>
               <div className="space-y-2">
-                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/</p>
-                <p>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
-                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                <p>Es gilt das Masseur- und Physiotherapeutengesetz (MPhG).</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold">Berufshaftpflichtversicherung</h2>
+              <div className="space-y-2">
+                <p>Name des Versicherers: [Platzhalter: Name des Versicherungsunternehmens]</p>
+                <p>Adresse des Versicherers: [Platzhalter: Adresse des Versicherungsunternehmens]</p>
+                <p>Räumlicher Geltungsbereich der Versicherung: [Platzhalter: Geltungsbereich, z. B. "Deutschland" oder "Europaweit"]</p>
+                <p>Versicherungsscheinnummer/Vertragsnummer: [Platzhalter: Nummer der Police]</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold">Hinweis zur steuerlichen Behandlung</h2>
+              <div className="space-y-2">
+                <p>Es liegt keine Steuer-ID vor, da keine unternehmerische Tätigkeit im handelsrechtlichen Sinne ausgeübt wird.</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold">Online-Streitbeilegung</h2>
+              <div className="space-y-2">
+                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+                <p>Wir sind zur Teilnahme an einem Streitbeilegungsverfahren weder bereit noch verpflichtet.</p>
               </div>
             </div>
 

@@ -4,27 +4,128 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { ClientServiceSection } from "./client-components"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Leistungen | Physiotherapie Amrum",
-  description: "Entdecken Sie unsere umfassenden physiotherapeutischen Leistungen auf Amrum. Von klassischer Krankengymnastik bis zu speziellen Therapiemethoden.",
-  keywords: "Physiotherapie, Leistungen, Krankengymnastik, Manuelle Therapie, Massage, Amrum",
+  title: "Leistungen | Leonie Schlör",
+  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage für Ihr Wohlbefinden.",
+  keywords: [
+    "Physiotherapie Leistungen Amrum",
+    "Gesundheitstraining Amrum",
+    "Tapen Physiotherapie",
+    "Massage Amrum",
+    "Physiotherapeutische Behandlungen",
+    "Bewegungstherapie Amrum",
+    "Schmerzlinderung Amrum",
+    "Rehabilitation Amrum"
+  ],
+  alternates: {
+    canonical: "/leistungen",
+  },
+  openGraph: {
+    title: "Physiotherapeutische Leistungen | Leonie Schlör",
+    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf Ihre Bedürfnisse abgestimmt.",
+    url: "https://physiotherapie-amrum.de/leistungen",
+    images: [
+      {
+        url: "/Massage.webp",
+        width: 1200,
+        height: 630,
+        alt: "Physiotherapeutische Leistungen auf Amrum - Gesundheitstraining, Tapen und Massage"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Physiotherapeutische Leistungen auf Amrum",
+    description: "Gesundheitstraining, Tapen und Massage für Ihr Wohlbefinden - individuell angepasste Behandlungen.",
+    images: ["/Massage.webp"]
+  }
 }
 
 export default function ServicesPage() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* Structured Data */}
+      <Script
+        id="schema-services"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalBusiness",
+            name: "Physiotherapie Amrum - Leonie Schlör",
+            url: "https://physiotherapie-amrum.de/leistungen",
+            image: "https://physiotherapie-amrum.de/Massage.webp",
+            telephone: "+49 173 6414846",
+            email: "leonieschloer.physio@gmail.com",
+            priceRange: "$$",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Uasterstigh 3",
+              addressLocality: "Nebel",
+              postalCode: "25946",
+              addressRegion: "Schleswig-Holstein",
+              addressCountry: "DE"
+            },
+            medicalSpecialty: "Physiotherapy",
+            availableService: [
+              {
+                "@type": "MedicalTherapy",
+                name: "Gesundheitstraining",
+                description: "Gezielte Bewegungstherapie zur Verbesserung körperlicher Defizite und Schmerzlinderung",
+                usesDevice: "Trainingsgeräte",
+                relevantSpecialty: "PhysicalTherapy"
+              },
+              {
+                "@type": "MedicalTherapy",
+                name: "Tapen",
+                description: "Gezielte Behandlung mit Tapes zur Aktivierung der Selbstheilungskräfte des Körpers",
+                relevantSpecialty: "PhysicalTherapy"
+              },
+              {
+                "@type": "MedicalTherapy",
+                name: "Massage",
+                description: "Manuelle Behandlungstechnik zur Verbesserung der Durchblutung, Schmerzlinderung und Entspannung",
+                relevantSpecialty: "PhysicalTherapy"
+              }
+            ],
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Physiotherapeutische Leistungen auf Amrum",
+              itemListElement: [
+                {
+                  "@type": "OfferCatalog",
+                  name: "Gesundheitstraining",
+                  description: "Gezielte Bewegungstherapie zur Verbesserung körperlicher Defizite und Schmerzlinderung"
+                },
+                {
+                  "@type": "OfferCatalog",
+                  name: "Tapen",
+                  description: "Gezielte Behandlung mit Tapes zur Aktivierung der Selbstheilungskräfte des Körpers"
+                },
+                {
+                  "@type": "OfferCatalog",
+                  name: "Massage",
+                  description: "Manuelle Behandlungstechnik zur Verbesserung der Durchblutung, Schmerzlinderung und Entspannung"
+                }
+              ]
+            }
+          })
+        }}
+      />
+
       {/* Hero Section */}
       <ClientServiceSection className="pt-24 md:pt-32">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-            Unser Angebot
+            Mein Angebot
           </div>
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Physiotherapeutische Leistungen
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Entdecken Sie unser umfassendes Angebot an physiotherapeutischen Behandlungen und Therapien für Ihr Wohlbefinden.
+            Entdecken Sie mein spezialisiertes Angebot an physiotherapeutischen Behandlungen und Therapien für Ihr Wohlbefinden.
           </p>
         </div>
       </ClientServiceSection>
@@ -35,20 +136,20 @@ export default function ServicesPage() {
           <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
             <div className="p-6">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                  <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" />
-                  <line x1="9" y1="9" x2="10" y2="9" />
-                  <line x1="9" y1="13" x2="15" y2="13" />
-                  <line x1="9" y1="17" x2="15" y2="17" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden="true">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                  <line x1="6" y1="1" x2="6" y2="4" />
+                  <line x1="10" y1="1" x2="10" y2="4" />
+                  <line x1="14" y1="1" x2="14" y2="4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold">Klassische Krankengymnastik</h3>
+              <h3 className="text-xl font-bold">Gesundheitstraining</h3>
               <p className="mt-2 text-muted-foreground">
-                Gezielte Übungen zur Verbesserung von Beweglichkeit, Kraft und Koordination. Individuell angepasst an Ihre Bedürfnisse.
+                Gezielte Bewegungstherapie zur Verbesserung körperlicher Defizite und Schmerzlinderung.
               </p>
               <Button variant="link" className="mt-4 p-0" asChild>
-                <a href="#krankengymnastik">Mehr erfahren</a>
+                <a href="#gesundheitstraining">Mehr erfahren</a>
               </Button>
             </div>
           </div>
@@ -56,19 +157,21 @@ export default function ServicesPage() {
           <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
             <div className="p-6">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                  <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                  <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                  <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden="true">
+                  <path d="M22 12.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9" />
+                  <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                  <path d="m22 22-4.5-4.5" />
+                  <path d="M7 8h10" />
+                  <path d="M7 12h8" />
+                  <path d="M7 16h6" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold">Manuelle Therapie</h3>
+              <h3 className="text-xl font-bold">Tapen</h3>
               <p className="mt-2 text-muted-foreground">
-                Spezielle Handgriffe und Mobilisationstechniken zur Behandlung von Gelenk- und Wirbelsäulenproblemen.
+                Gezielte Behandlung mit Tapes zur Aktivierung der Selbstheilungskräfte des Körpers.
               </p>
               <Button variant="link" className="mt-4 p-0" asChild>
-                <a href="#manuelle-therapie">Mehr erfahren</a>
+                <a href="#tapen">Mehr erfahren</a>
               </Button>
             </div>
           </div>
@@ -76,7 +179,7 @@ export default function ServicesPage() {
           <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
             <div className="p-6">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden="true">
                   <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
                   <path d="M3 9V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4" />
                   <path d="M12 9v12" />
@@ -84,67 +187,10 @@ export default function ServicesPage() {
               </div>
               <h3 className="text-xl font-bold">Massage</h3>
               <p className="mt-2 text-muted-foreground">
-                Klassische Massagetechniken zur Entspannung der Muskulatur, Förderung der Durchblutung und der Schmerzlinderung.
+                Manuelle Behandlungstechnik zur Verbesserung der Durchblutung, Schmerzlinderung und Entspannung.
               </p>
               <Button variant="link" className="mt-4 p-0" asChild>
                 <a href="#massage">Mehr erfahren</a>
-              </Button>
-            </div>
-          </div>
-          
-          <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
-            <div className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="M3 8a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
-                  <path d="m7 15 5-5 5 5" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold">Lymphdrainage</h3>
-              <p className="mt-2 text-muted-foreground">
-                Sanfte Druckmassage zur Entstauung bei Lymphödemen und zur Förderung des Lymphabflusses im Gewebe.
-              </p>
-              <Button variant="link" className="mt-4 p-0" asChild>
-                <a href="#lymphdrainage">Mehr erfahren</a>
-              </Button>
-            </div>
-          </div>
-          
-          <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
-            <div className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold">Hausbesuche</h3>
-              <p className="mt-2 text-muted-foreground">
-                Physiotherapeutische Behandlungen bequem bei Ihnen zu Hause, wenn Sie nicht in die Praxis kommen können.
-              </p>
-              <Button variant="link" className="mt-4 p-0" asChild>
-                <a href="#hausbesuche">Mehr erfahren</a>
-              </Button>
-            </div>
-          </div>
-          
-          <div className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md">
-            <div className="p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <line x1="10" y1="9" x2="8" y2="9" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold">Präventionskurse</h3>
-              <p className="mt-2 text-muted-foreground">
-                Kurse zur Vorbeugung von Beschwerden und Förderung der Gesundheit, teilweise von den Krankenkassen bezuschusst.
-              </p>
-              <Button variant="link" className="mt-4 p-0" asChild>
-                <a href="#prävention">Mehr erfahren</a>
               </Button>
             </div>
           </div>
@@ -152,69 +198,85 @@ export default function ServicesPage() {
       </ClientServiceSection>
 
       {/* Detailed Service Descriptions */}
-      <ClientServiceSection id="krankengymnastik">
+      <ClientServiceSection id="gesundheitstraining">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-3 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter">Klassische Krankengymnastik</h2>
+            <h2 className="text-3xl font-bold tracking-tighter">Gesundheitstraining</h2>
             <p className="text-muted-foreground">
-              Die klassische Krankengymnastik ist die Grundlage der Physiotherapie und kommt bei zahlreichen Erkrankungen und Verletzungen zum Einsatz. Durch gezielte Übungen werden Beweglichkeit, Kraft, Ausdauer und Koordination verbessert.
+              Das Gesundheitstraining ist eine Form der Bewegungstherapie. Diese wird bei bestehenden Krankheiten, bei Nachbehandlungen von Krankheiten, bei Operationen oder Unfällen eingesetzt. Dadurch werden körperliche Defizite und die damit verbundenen Schmerzen gezielt verbessert oder ausgeglichen.
+            </p>
+            <p className="text-muted-foreground">
+              Wir werden der Problematik auf den Grund gehen, gemeinsam Ziele bestimmen und eine zielführende Behandlung durchführen.
             </p>
             <div className="space-y-2">
               <p><strong>Anwendungsbereiche:</strong></p>
               <ul className="list-disc pl-6 space-y-1">
                 <li>Rehabilitation nach Operationen oder Verletzungen</li>
-                <li>Behandlung von Wirbelsäulen- und Gelenkbeschwerden</li>
-                <li>Muskuläre Dysbalancen und Haltungsprobleme</li>
-                <li>Neurologische Erkrankungen</li>
-                <li>Chronische Schmerzzustände</li>
+                <li>Behandlung bestehender Krankheiten</li>
+                <li>Nachbehandlung von Krankheiten</li>
+                <li>Schmerzzustände durch körperliche Defizite</li>
+                <li>Wiederherstellung der Beweglichkeit nach Unfällen</li>
               </ul>
             </div>
             <p className="text-muted-foreground">
-              Jede Behandlung wird individuell auf Ihre Bedürfnisse abgestimmt. Wir berücksichtigen dabei Ihre persönlichen Ziele, sei es die Schmerzlinderung, die Rückkehr zum Sport oder die Bewältigung des Alltags.
-            </p>
-            <p className="text-muted-foreground">
-              Die Übungen werden während der Therapie gemeinsam durchgeführt, und Sie erhalten ein Heimprogramm, um den Therapieerfolg zu unterstützen.
+              Jede Behandlung wird individuell auf Ihre Bedürfnisse abgestimmt. Wir berücksichtigen dabei Ihre persönlichen Ziele und erstellen einen maßgeschneiderten Trainingsplan.
             </p>
           </div>
           <div className="md:col-span-2 h-full">
             <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Krankengymnastische Übung</p>
-              </div>
+              <Image
+                src="/Gesundheitstraining.webp"
+                alt="Individuelles Gesundheitstraining zur Verbesserung körperlicher Defizite und gezielter Schmerzlinderung in der Physiotherapie auf Amrum"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+                loading="eager"
+                quality={95}
+                priority={true}
+                fetchPriority="high"
+              />
             </div>
           </div>
         </div>
       </ClientServiceSection>
 
-      <ClientServiceSection id="manuelle-therapie" className="bg-muted/30">
+      <ClientServiceSection id="tapen" className="bg-muted/30">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2 order-2 md:order-1 h-full">
             <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Manuelle Therapie Anwendung</p>
-              </div>
+              <Image
+                src="/Tapen.webp"
+                alt="Professionelle Tape-Anwendung zur Aktivierung der Selbstheilungskräfte bei Verletzungen und Schmerzen - Physiotherapie Amrum"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+                loading="eager"
+                quality={95}
+                priority={true}
+                fetchPriority="high"
+              />
             </div>
           </div>
           <div className="md:col-span-3 order-1 md:order-2 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter">Manuelle Therapie</h2>
+            <h2 className="text-3xl font-bold tracking-tighter">Tapen</h2>
             <p className="text-muted-foreground">
-              Die Manuelle Therapie ist eine spezielle Form der Physiotherapie, bei der mit den Händen direkt am Bewegungsapparat gearbeitet wird. Durch spezifische Handgriffe werden Blockaden gelöst, Gelenke mobilisiert und Muskelverspannungen gelöst.
+              Tape wird im Alltag, im Sport und im medizinischen Bereich verwendet, um die Selbstheilungskräfte des Körpers zu aktivieren und zu unterstützen. Der ständige Reiz soll durch die Aktivierung verschiedener Rezeptoren die Muskelspannung regulieren und ein ständiges Signal an das zentrale Nervensystem auslösen.
+            </p>
+            <p className="text-muted-foreground">
+              Tapes können bei bestehenden Verletzungen oder Schmerzen sowie zur Prävention und Rehabilitation eingesetzt werden.
             </p>
             <div className="space-y-2">
-              <p><strong>Anwendungsbereiche:</strong></p>
+              <p><strong>Indikationen für ein Tape:</strong></p>
               <ul className="list-disc pl-6 space-y-1">
-                <li>Blockaden der Wirbelsäule und Gelenke</li>
-                <li>Bandscheibenvorfälle und -vorwölbungen</li>
-                <li>Chronische Schmerzsyndrome</li>
-                <li>Eingeschränkte Gelenkbeweglichkeit</li>
-                <li>Muskuläre Dysbalancen und Verspannungen</li>
+                <li>Wassereinlagerungen</li>
+                <li>Muskel-, Gelenk- und Bandverletzungen</li>
+                <li>Schmerzzustände</li>
+                <li>Zur Prävention bei sportlichen Aktivitäten</li>
+                <li>Als Unterstützung im Rehabilitationsprozess</li>
               </ul>
             </div>
             <p className="text-muted-foreground">
-              Die Manuelle Therapie kombiniert verschiedene Techniken wie Mobilisation, Traktion, Weichteiltechniken und spezielle Dehnungen. Die Behandlung wird durch aktive Übungen ergänzt, um die Wirkung zu verbessern und zu festigen.
-            </p>
-            <p className="text-muted-foreground">
-              Alle unsere Therapeuten verfügen über eine Zusatzqualifikation in Manueller Therapie und bilden sich regelmäßig fort, um die neuesten Techniken anzuwenden.
+              Die Tapetechnik wird individuell auf Ihre Beschwerden abgestimmt und kann als Einzelbehandlung oder als Teil eines umfassenden Therapiekonzepts angewendet werden.
             </p>
           </div>
         </div>
@@ -225,7 +287,10 @@ export default function ServicesPage() {
           <div className="md:col-span-3 space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter">Massage</h2>
             <p className="text-muted-foreground">
-              Die klassische Massage gehört zu den ältesten Heilmethoden und dient der Entspannung der Muskulatur, der Förderung der Durchblutung und der Schmerzlinderung. Durch verschiedene Grifftechniken werden Verspannungen gelöst und das Wohlbefinden gesteigert.
+              Bei der Massage handelt es sich um eine manuelle Behandlungstechnik. Es werden mechanische Reize auf das betroffene Gewebe, Haut und Muskulatur ausgeübt. Durch die verschiedenen Techniken verbessert sich nicht nur die Durchblutung, sondern wir erreichen eine Schmerzlinderung und erzielen somit eine Entspannung des gesamten Organismus.
+            </p>
+            <p className="text-muted-foreground">
+              Somit können wir die hypertone Muskulatur lockern und die damit verbundene Fehlhaltung korrigieren.
             </p>
             <div className="space-y-2">
               <p><strong>Anwendungsbereiche:</strong></p>
@@ -233,145 +298,43 @@ export default function ServicesPage() {
                 <li>Muskelverspannungen und -verhärtungen</li>
                 <li>Rückenschmerzen und Nackenverspannungen</li>
                 <li>Durchblutungsstörungen</li>
-                <li>Stressbedingte Beschwerden</li>
-                <li>Unterstützende Therapie bei verschiedenen Erkrankungen</li>
+                <li>Schmerzlinderung bei verschiedenen Beschwerden</li>
+                <li>Korrektur von Fehlhaltungen durch verspannte Muskulatur</li>
               </ul>
             </div>
-            <p className="text-muted-foreground">
-              Wir bieten verschiedene Massagetechniken an, die je nach Beschwerdebild und Wunsch eingesetzt werden. Dazu gehören klassische Massage, Bindegewebsmassage, Fußreflexzonenmassage und Sportmassage.
-            </p>
             <p className="text-muted-foreground">
               Die Massage wird individuell auf Ihre Bedürfnisse abgestimmt und kann als Einzelbehandlung oder im Rahmen eines umfassenden Therapiekonzepts durchgeführt werden.
             </p>
           </div>
           <div className="md:col-span-2 h-full">
             <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Massagebehandlung</p>
-              </div>
+              <Image
+                src="/Massage.webp"
+                alt="Entspannende und heilsame Massage zur Schmerzlinderung und Lösung von Muskelverspannungen - Physiotherapie auf Amrum"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+                loading="eager"
+                quality={95}
+                priority={true}
+                fetchPriority="high"
+              />
             </div>
-          </div>
-        </div>
-      </ClientServiceSection>
-
-      <ClientServiceSection id="lymphdrainage" className="bg-muted/30">
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="md:col-span-2 order-2 md:order-1 h-full">
-            <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Lymphdrainage Anwendung</p>
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-3 order-1 md:order-2 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter">Lymphdrainage</h2>
-            <p className="text-muted-foreground">
-              Die manuelle Lymphdrainage ist eine besondere Massageform, bei der durch sanfte, rhythmische Bewegungen der Lymphfluss angeregt und Schwellungen reduziert werden. Sie dient der Entstauung des Gewebes und der Förderung des Abtransports von Gewebsflüssigkeit.
-            </p>
-            <div className="space-y-2">
-              <p><strong>Anwendungsbereiche:</strong></p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Lymphödeme nach Operationen oder Bestrahlungen</li>
-                <li>Posttraumatische Schwellungen (z.B. nach Verletzungen)</li>
-                <li>Chronische Venenschwäche</li>
-                <li>Begleittherapie bei verschiedenen Erkrankungen</li>
-                <li>Unterstützung der Wundheilung</li>
-              </ul>
-            </div>
-            <p className="text-muted-foreground">
-              Die Behandlung wird durch spezielle Bandagierungstechniken und Bewegungsübungen ergänzt, um den Therapieerfolg zu optimieren. Bei Bedarf beraten wir Sie auch zu geeigneten Kompressionsstrümpfen oder -strumpfhosen.
-            </p>
-            <p className="text-muted-foreground">
-              Die Lymphdrainage wird von speziell ausgebildeten Therapeuten durchgeführt, die über eine entsprechende Zusatzqualifikation verfügen.
-            </p>
-          </div>
-        </div>
-      </ClientServiceSection>
-
-      <ClientServiceSection id="hausbesuche">
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="md:col-span-3 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter">Hausbesuche</h2>
-            <p className="text-muted-foreground">
-              Für Patienten, die aus gesundheitlichen Gründen nicht in unsere Praxis kommen können, bieten wir physiotherapeutische Behandlungen im häuslichen Umfeld an. Die Therapie wird dabei an die Gegebenheiten vor Ort angepasst.
-            </p>
-            <div className="space-y-2">
-              <p><strong>Vorteile der Hausbesuche:</strong></p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Behandlung in gewohnter Umgebung</li>
-                <li>Keine Anfahrtswege für mobilitätseingeschränkte Patienten</li>
-                <li>Integration der Therapie in den Alltag</li>
-                <li>Einbeziehung von Hilfsmitteln und Alltagsgegenständen</li>
-                <li>Anpassung des Wohnumfelds an therapeutische Bedürfnisse</li>
-              </ul>
-            </div>
-            <p className="text-muted-foreground">
-              Hausbesuche sind grundsätzlich für alle unsere therapeutischen Angebote möglich, sofern die räumlichen Gegebenheiten dies zulassen. Die Kosten werden bei entsprechender Verordnung von den gesetzlichen Krankenkassen übernommen.
-            </p>
-            <p className="text-muted-foreground">
-              Bitte beachten Sie, dass für Hausbesuche eine vorherige Terminvereinbarung nötig ist. Wir bemühen uns, Ihre Wunschtermine zu berücksichtigen.
-            </p>
-          </div>
-          <div className="md:col-span-2 h-full">
-            <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Hausbesuch zur Therapie</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ClientServiceSection>
-
-      <ClientServiceSection id="prävention" className="bg-muted/30">
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="md:col-span-2 order-2 md:order-1 h-full">
-            <div className="aspect-video rounded-xl overflow-hidden bg-muted relative h-full w-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground">Bild: Präventionskurs</p>
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-3 order-1 md:order-2 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter">Präventionskurse</h2>
-            <p className="text-muted-foreground">
-              Vorbeugung ist besser als Heilung! In unseren Präventionskursen lernen Sie, wie Sie aktiv etwas für Ihre Gesundheit tun können. Die Kurse werden in Kleingruppen durchgeführt und von qualifizierten Therapeuten geleitet.
-            </p>
-            <div className="space-y-2">
-              <p><strong>Unser Kursangebot:</strong></p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Rückenfit: Kräftigung und Mobilisation der Rückenmuskulatur</li>
-                <li>Progressive Muskelentspannung nach Jacobson</li>
-                <li>Faszientraining: Verbesserung der Gewebsqualität und Beweglichkeit</li>
-                <li>Sturzprophylaxe für Senioren</li>
-                <li>Gesunder Arbeitsplatz: Ergonomie im Alltag</li>
-              </ul>
-            </div>
-            <p className="text-muted-foreground">
-              Viele unserer Kurse sind von den gesetzlichen Krankenkassen zertifiziert und werden teilweise oder vollständig bezuschusst. Wir beraten Sie gerne zu den Möglichkeiten der Kostenübernahme.
-            </p>
-            <p className="text-muted-foreground">
-              Die Kurse finden regelmäßig statt und umfassen in der Regel 8-12 Termine. Aktuelle Termine und freie Plätze erfragen Sie bitte direkt in unserer Praxis oder telefonisch.
-            </p>
           </div>
         </div>
       </ClientServiceSection>
 
       {/* CTA */}
-      <ClientServiceSection>
+      <ClientServiceSection className="bg-muted/30">
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Bereit für Ihre Behandlung?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Kontaktieren Sie uns für einen Termin oder weitere Informationen zu unseren Leistungen. Wir freuen uns darauf, Sie in unserer Praxis begrüßen zu dürfen.
+            Ich freue mich darauf, Sie auf Amrum begrüßen zu dürfen und Sie mit meinen Behandlungen auf Ihrem Weg zu mehr Wohlbefinden und Gesundheit zu begleiten.
           </p>
-          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
+          <div className="pt-4">
+            <Button asChild size="lg">
               <Link href={{ pathname: "/kontakt" }}>
                 Termin vereinbaren
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href={{ pathname: "/preisliste" }}>
-                Preisliste ansehen
               </Link>
             </Button>
           </div>

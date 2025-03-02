@@ -1,4 +1,4 @@
-import { MapPin, Mail, Phone, Clock, Facebook, Instagram } from "lucide-react"
+import { MapPin, Mail, Phone, Facebook, Instagram } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -19,7 +19,7 @@ export function Footer({ className }: FooterProps) {
           <div className="space-y-4">
             <h3 className="font-heading text-xl font-bold text-primary">Physiotherapie Amrum</h3>
             <p className="text-muted-foreground max-w-xs">
-              Professionelle Physiotherapie auf der wunderschönen Insel Amrum. Wir bieten individuelle Behandlungen für Ihr Wohlbefinden.
+              Professionelle Physiotherapie auf der wunderschönen Insel Amrum. Ich biete individuelle Behandlungen für Ihr Wohlbefinden.
             </p>
             <div className="flex space-x-3">
               <Button
@@ -32,7 +32,7 @@ export function Footer({ className }: FooterProps) {
                   href="https://facebook.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Besuchen Sie uns auf Facebook"
+                  aria-label="Besuchen Sie mich auf Facebook"
                 >
                   <Facebook className="h-4 w-4" />
                 </Link>
@@ -47,7 +47,7 @@ export function Footer({ className }: FooterProps) {
                   href="https://instagram.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Folgen Sie uns auf Instagram"
+                  aria-label="Folgen Sie mir auf Instagram"
                 >
                   <Instagram className="h-4 w-4" />
                 </Link>
@@ -61,33 +61,25 @@ export function Footer({ className }: FooterProps) {
             <ul className="space-y-3 text-muted-foreground">
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>Strandstraße 123, 25946 Amrum</span>
+                <span>Uasterstigh 3, 25946 Nebel auf Amrum</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
                 <a 
-                  href="tel:+4912345678" 
+                  href="tel:+4917364148465" 
                   className="hover:text-primary transition-colors"
                 >
-                  +49 1234 5678
+                  +49 173 6414846
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
                 <a 
-                  href="mailto:info@physiotherapie-amrum.de" 
+                  href="mailto:leonieschloer.physio@gmail.com" 
                   className="hover:text-primary transition-colors"
                 >
-                  info@physiotherapie-amrum.de
+                  leonieschloer.physio@gmail.com
                 </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <Clock className="h-4 w-4 text-primary mt-0.5" />
-                <div>
-                  <p>Mo-Fr: 08:00-18:00</p>
-                  <p>Sa: 09:00-13:00</p>
-                  <p>So: Geschlossen</p>
-                </div>
               </li>
             </ul>
           </div>

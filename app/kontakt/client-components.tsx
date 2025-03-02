@@ -3,7 +3,13 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import React from "react"
+import React, { useEffect, useState } from "react"
+
+// Context for sharing animation state between parent and children
+export const HeroSectionContext = React.createContext({ 
+  isHeroSection: false, 
+  shouldAnimate: false 
+});
 
 export function ClientContactCard({
   icon,
@@ -20,12 +26,17 @@ export function ClientContactCard({
   linkHref?: string
   delay: number
 }) {
+  // Use the hero section context
+  const { isHeroSection, shouldAnimate } = React.useContext(HeroSectionContext);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.3 }}
+      {...(isHeroSection
+        ? { animate: shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 } }
+        : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } }
+      )}
+      transition={{ delay, duration: 0.25 }}
       className="rounded-xl border bg-background p-6 shadow-sm"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
@@ -49,19 +60,19 @@ export function ClientContactForm() {
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4 }}
       className="rounded-xl border bg-background p-6 md:p-8 shadow-sm"
     >
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Kontaktformular</h2>
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Schreiben Sie Mir</h2>
           <p className="text-muted-foreground">
-            Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.
+            Füllen Sie das Formular aus und ich melde mich schnellstmöglich bei Ihnen.
           </p>
         </div>
 
-        <form className="space-y-4">
+        <form className="space-y-4" data-autofill="false">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="first-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -72,6 +83,7 @@ export function ClientContactForm() {
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder="Max"
                 required
+                autoComplete="given-name"
               />
             </div>
             <div className="space-y-2">
@@ -83,6 +95,7 @@ export function ClientContactForm() {
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder="Mustermann"
                 required
+                autoComplete="family-name"
               />
             </div>
           </div>
@@ -96,6 +109,7 @@ export function ClientContactForm() {
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="max.mustermann@example.com"
               required
+              autoComplete="email"
             />
           </div>
           <div className="space-y-2">
@@ -107,6 +121,7 @@ export function ClientContactForm() {
               type="tel"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="+49 123 4567890"
+              autoComplete="tel"
             />
           </div>
           <div className="space-y-2">
@@ -118,6 +133,7 @@ export function ClientContactForm() {
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="Terminanfrage"
               required
+              autoComplete="off"
             />
           </div>
           <div className="space-y-2">
@@ -129,6 +145,7 @@ export function ClientContactForm() {
               className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="Ihre Nachricht an uns..."
               required
+              autoComplete="off"
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -164,12 +181,54 @@ export function ClientFaqItem({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay: index * 0.05, duration: 0.25 }}
       className="rounded-lg border p-6"
     >
       <h3 className="font-medium">{question}</h3>
       <p className="mt-2 text-muted-foreground">{answer}</p>
     </motion.div>
+  )
+}
+
+export function ClientContactSection({ 
+  className, 
+  children 
+}: { 
+  className?: string
+  children: React.ReactNode
+}) {
+  // Check if this is a hero/top section (default to false if className is undefined)
+  const isHeroSection = className?.includes('pt-') ?? false;
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  
+  // For hero sections, trigger animation immediately
+  useEffect(() => {
+    if (isHeroSection) {
+      // Small timeout to ensure DOM is ready
+      const timer = setTimeout(() => setShouldAnimate(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isHeroSection]);
+
+  // Provide the hero section context to children
+  const contextValue = { isHeroSection, shouldAnimate };
+
+  return (
+    <HeroSectionContext.Provider value={contextValue}>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        {...(isHeroSection 
+          ? { animate: shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 } }
+          : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } }
+        )}
+        transition={{ duration: 0.4 }}
+        className={className}
+      >
+        <div className="container px-4 md:px-6">
+          {children}
+        </div>
+      </motion.section>
+    </HeroSectionContext.Provider>
   )
 } 

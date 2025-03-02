@@ -4,16 +4,114 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { ClientAboutSection } from "./client-components"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Über Mich | Physiotherapie Amrum",
+  title: "Über Mich | Leonie Schlör",
   description: "Lernen Sie mich kennen - Ihre Physiotherapeutin auf Amrum mit langjähriger Erfahrung und Leidenschaft für ganzheitliche Therapie.",
-  keywords: "Physiotherapeutin, Amrum, Ausbildung, Qualifikation, Erfahrung, Therapieansatz",
+  keywords: [
+    "Physiotherapeutin Amrum",
+    "Leonie Schlör Physiotherapie",
+    "Ausbildung Physiotherapie",
+    "Qualifikationen Physiotherapie",
+    "Erfahrung Physiotherapie Amrum",
+    "Ganzheitlicher Therapieansatz",
+    "Yoga Amrum",
+    "Faszientraining Amrum",
+    "Physiotherapie Tapen Amrum"
+  ],
+  alternates: {
+    canonical: "/uber-mich",
+  },
+  openGraph: {
+    title: "Über Mich | Leonie Schlör",
+    description: "Lernen Sie Leonie Schlör kennen - Ihre Physiotherapeutin auf Amrum mit langjähriger Erfahrung und Leidenschaft für ganzheitliche Therapie.",
+    url: "https://physiotherapie-amrum.de/uber-mich",
+    images: [
+      {
+        url: "/ueber-mich.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Leonie Schlör - Physiotherapeutin auf Amrum"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Über Mich | Physiotherapie auf Amrum",
+    description: "Lernen Sie Leonie Schlör kennen - Physiotherapeutin mit ganzheitlichem Ansatz auf Amrum.",
+    images: ["/ueber-mich.jpg"]
+  }
 }
 
 export default function AboutPage() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* Structured Data */}
+      <Script
+        id="schema-person"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Leonie Schlör",
+            jobTitle: "Physiotherapeutin",
+            description: "Physiotherapeutin auf Amrum mit Spezialisierung in Tape, Massage und Gesundheitstraining",
+            url: "https://physiotherapie-amrum.de/uber-mich",
+            image: "https://physiotherapie-amrum.de/ueber-mich.jpg",
+            telephone: "+49 173 6414846",
+            email: "leonieschloer.physio@gmail.com",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Uasterstigh 3",
+              addressLocality: "Nebel",
+              postalCode: "25946",
+              addressRegion: "Schleswig-Holstein",
+              addressCountry: "DE"
+            },
+            sameAs: [
+              "https://www.instagram.com/leonie.physio"
+            ],
+            knowsAbout: [
+              "Physiotherapie",
+              "Gesundheitstraining",
+              "Tapen",
+              "Massage",
+              "Faszientraining",
+              "Yoga"
+            ],
+            hasCredential: [
+              {
+                "@type": "EducationalOccupationalCredential",
+                credentialCategory: "degree",
+                name: "Staatlich anerkannte Physiotherapeutin",
+                educationalLevel: "professional",
+                recognizedBy: {
+                  "@type": "Organization",
+                  name: "IB Medizinische Akademie"
+                }
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                credentialCategory: "certificate",
+                name: "Zertifizierte Yogalehrerin"
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                credentialCategory: "certificate",
+                name: "Faszientraining"
+              }
+            ],
+            worksFor: {
+              "@type": "MedicalBusiness",
+              name: "Physiotherapie Amrum - Leonie Schlör",
+              url: "https://physiotherapie-amrum.de"
+            }
+          })
+        }}
+      />
+
       {/* Hero Section */}
       <ClientAboutSection className="pt-24 md:pt-32">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
@@ -30,12 +128,15 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-square overflow-hidden rounded-xl">
             <Image
-              src="/images/about/therapist.jpg"
-              alt="Physiotherapeutin auf Amrum"
+              src="/ueber-mich.jpg"
+              alt="Leonie Schlör - Physiotherapeutin auf Amrum mit langjähriger Erfahrung und ganzheitlichem Therapieansatz"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority
+              fetchPriority="high"
+              loading="eager"
+              quality={95}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
           </div>
@@ -66,51 +167,54 @@ export default function AboutPage() {
             <ul className="space-y-4">
               <li className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary" aria-hidden="true">
                     <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                     <path d="M6 12v5c3 3 9 3 12 0v-5" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold">Staatlich anerkannte Physiotherapeutin</h3>
-                  <p className="text-muted-foreground">Abschluss an der Physiotherapieschule Hamburg</p>
+                  <p className="text-muted-foreground">Abschluss an der IB Medizinische Akademie</p>
                 </div>
               </li>
               <li className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary" aria-hidden="true">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold">Manuelle Therapie</h3>
-                  <p className="text-muted-foreground">Zertifizierte Weiterbildung für gezielte Behandlung von Funktionsstörungen</p>
+                  <h3 className="font-semibold">Tapen</h3>
+                  <p className="text-muted-foreground">Zertifizierte Weiterbildung für gezielte Behandlung mit Tapes</p>
                 </div>
               </li>
               <li className="flex gap-4">
                 <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                    <path d="M12 2 2 7l10 5 10-5-10-5Z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold">Lymphdrainage</h3>
-                  <p className="text-muted-foreground">Spezialisierung auf manuelle Lymphdrainage</p>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary" aria-hidden="true">
                     <circle cx="12" cy="12" r="10" />
-                    <path d="M12 2a4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0-9 4.5 4.5 0 0 1 0-9Z" />
+                    <path d="M12 2a4.5 4.5 0 0 0 0 9a4.5 4.5 0 0 1 0 9a4.5 4.5 0 0 0 0-9a4.5 4.5 0 0 1 0-9Z" />
                     <path d="M12 2v20" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold">Yoga-Lehrerin</h3>
-                  <p className="text-muted-foreground">Zertifizierte Ausbildung in therapeutischem Yoga</p>
+                  <p className="text-muted-foreground">Zertifizierte Ausbildung als Yogalehrerin</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary" aria-hidden="true">
+                    <path d="M2 12s2-4 8-4 8 4 8 4" />
+                    <path d="M14 10c0-1.1-.9-2-2-2s-2 .9-2 2" />
+                    <path d="M2 18s2-4 8-4 8 4 8 4" />
+                    <path d="M14 16c0-1.1-.9-2-2-2s-2 .9-2 2" />
+                    <path d="M14 16v4" />
+                    <path d="M8 10v8" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold">Faszientraining</h3>
+                  <p className="text-muted-foreground">Intensive Weiterbildung zu Faszien und Behandlung</p>
                 </div>
               </li>
             </ul>
@@ -137,31 +241,31 @@ export default function AboutPage() {
           <div className="space-y-8">
             <div className="relative pl-8 border-l border-primary/30">
               <div className="absolute left-0 top-0 -translate-x-1/2 h-4 w-4 rounded-full bg-primary"></div>
-              <div className="mb-1 text-sm text-muted-foreground">2018 - Heute</div>
-              <h3 className="text-xl font-semibold">Eigene Praxis auf Amrum</h3>
+              <div className="mb-1 text-sm text-muted-foreground">2024 - Heute</div>
+              <h3 className="text-xl font-semibold">Selbständigkeit</h3>
               <p className="text-muted-foreground">
-                Leitung meiner eigenen Physiotherapie-Praxis mit Fokus auf ganzheitliche Behandlungskonzepte für Einheimische und Urlauber.
+                Behandlung meiner eigenen Patienten mit Fokus auf ganzheitliche Behandlungskonzepte für Einheimische und Urlauber.
               </p>
             </div>
             <div className="relative pl-8 border-l border-primary/30">
               <div className="absolute left-0 top-0 -translate-x-1/2 h-4 w-4 rounded-full bg-primary"></div>
-              <div className="mb-1 text-sm text-muted-foreground">2014 - 2018</div>
-              <h3 className="text-xl font-semibold">Rehaklinik Nordsee</h3>
+              <div className="mb-1 text-sm text-muted-foreground">2024 - Heute</div>
+              <h3 className="text-xl font-semibold">AOK Nordseeklinik - Abteilungsleiterin</h3>
               <p className="text-muted-foreground">
-                Angestellte Physiotherapeutin mit Schwerpunkt auf orthopädische Rehabilitation und Sportphysiotherapie.
+                Abteilungsleiterin der Physiotherapie, mit Schwerpunkt auf Sportkursen, Massagen und Sportphysiotherapie.
               </p>
             </div>
             <div className="relative pl-8 border-l border-primary/30">
               <div className="absolute left-0 top-0 -translate-x-1/2 h-4 w-4 rounded-full bg-primary"></div>
-              <div className="mb-1 text-sm text-muted-foreground">2010 - 2014</div>
-              <h3 className="text-xl font-semibold">Physiotherapie-Zentrum Hamburg</h3>
+              <div className="mb-1 text-sm text-muted-foreground">2022 - 2024</div>
+              <h3 className="text-xl font-semibold">AOK Nordseeklinik</h3>
               <p className="text-muted-foreground">
-                Tätigkeit als Physiotherapeutin in einem großen Therapiezentrum mit vielfältigen Patientengruppen und Behandlungsmethoden.
+                Angestellte Physiotherapeutin mit Schwerpunkt auf Sportkursen, Massagen und Sportphysiotherapie.
               </p>
             </div>
             <div className="relative pl-8">
               <div className="absolute left-0 top-0 -translate-x-1/2 h-4 w-4 rounded-full bg-primary"></div>
-              <div className="mb-1 text-sm text-muted-foreground">2007 - 2010</div>
+              <div className="mb-1 text-sm text-muted-foreground">2019 - 2022</div>
               <h3 className="text-xl font-semibold">Ausbildung zur Physiotherapeutin</h3>
               <p className="text-muted-foreground">
                 Staatlich anerkannte Ausbildung mit praktischen Einsätzen in verschiedenen klinischen Bereichen.
@@ -176,7 +280,7 @@ export default function AboutPage() {
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Bereit für Ihre Behandlung?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ich freue mich darauf, Sie in meiner Praxis auf Amrum begrüßen zu dürfen und Sie auf Ihrem Weg zu mehr Wohlbefinden und Gesundheit zu begleiten.
+            Ich freue mich darauf, Sie auf Amrum begrüßen zu dürfen und Sie auf Ihrem Weg zu mehr Wohlbefinden und Gesundheit zu begleiten.
           </p>
           <div className="pt-4">
             <Button asChild size="lg">

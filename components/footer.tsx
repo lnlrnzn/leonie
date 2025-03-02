@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
-import AnimatedSection from "@/components/animated-section"
+import { AnimatedSection } from "@/components/animated-section"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -8,31 +8,31 @@ export default function Footer() {
   return (
     <footer className="bg-nude-100 py-12 border-t border-nude-200">
       <div className="container px-4 md:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-8 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatedSection delay={0} direction="up">
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Physiotherapie Amrum</h3>
-              <p className="text-nude-700 mb-4">
-                Professionelle Physiotherapie, Massage und Yoga für Ihr Wohlbefinden und Ihre Gesundheit auf Amrum.
+              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Leonie Schlör</h3>
+              <p className="text-nude-700 mb-6">
+                Professionelle Physiotherapie und Massage für Ihr Wohlbefinden und Ihre Gesundheit auf Amrum.
               </p>
               <div className="flex space-x-4">
                 <Link 
                   href="https://facebook.com" 
-                  className="text-nude-600 hover:text-primary transition-colors" 
+                  className="text-nude-600 hover:text-primary transition-colors p-2 -m-2" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Besuchen Sie uns auf Facebook"
+                  aria-label="Besuchen Sie mich auf Facebook"
                 >
-                  <Facebook className="h-5 w-5" />
+                  <Facebook className="h-6 w-6" />
                 </Link>
                 <Link 
                   href="https://instagram.com" 
-                  className="text-nude-600 hover:text-primary transition-colors" 
+                  className="text-nude-600 hover:text-primary transition-colors p-2 -m-2" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Folgen Sie uns auf Instagram"
+                  aria-label="Folgen Sie mir auf Instagram"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-6 w-6" />
                 </Link>
               </div>
             </div>
@@ -42,21 +42,21 @@ export default function Footer() {
             <div>
               <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Kontakt</h3>
               <address className="not-italic">
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <p className="text-nude-700 flex items-center">
-                    <Phone className="h-4 w-4 mr-2 flex-shrink-0" /> 
-                    <a href="tel:+491234567890" className="hover:text-primary transition-colors">+49 123 456789</a>
+                    <Phone className="h-4 w-4 mr-3 flex-shrink-0" /> 
+                    <a href="tel:+4917364148465" className="hover:text-primary transition-colors py-1">+49 173 6414846</a>
                   </p>
                   <p className="text-nude-700 flex items-center">
-                    <Mail className="h-4 w-4 mr-2 flex-shrink-0" /> 
-                    <a href="mailto:info@physiotherapie-amrum.de" className="hover:text-primary transition-colors">
-                      info@physiotherapie-amrum.de
+                    <Mail className="h-4 w-4 mr-3 flex-shrink-0" /> 
+                    <a href="mailto:leonieschloer.physio@gmail.com" className="hover:text-primary transition-colors break-words py-1">
+                      leonieschloer.physio@gmail.com
                     </a>
                   </p>
                   <p className="text-nude-700 flex items-start">
-                    <MapPin className="h-4 w-4 mr-2 mt-1 flex-shrink-0" /> 
+                    <MapPin className="h-4 w-4 mr-3 mt-1 flex-shrink-0" /> 
                     <span>
-                      Musterstraße 123<br />
+                      Uasterstigh 3<br />
                       25946 Nebel<br />
                       Amrum
                     </span>
@@ -68,45 +68,39 @@ export default function Footer() {
 
           <AnimatedSection delay={2} direction="up">
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Öffnungszeiten auf Amrum</h3>
-              <div className="space-y-2">
-                <p className="text-nude-700">
-                  <span className="font-medium">Mo - Fr:</span> 08:00 - 18:00 Uhr
-                </p>
-                <p className="text-nude-700">
-                  <span className="font-medium">Sa:</span> 09:00 - 13:00 Uhr
-                </p>
-                <p className="text-nude-700">
-                  <span className="font-medium">So:</span> Geschlossen
-                </p>
-              </div>
+              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Navigation</h3>
+              <nav className="grid grid-cols-1 gap-3" aria-label="Footer Navigation">
+                <Link href={{ pathname: "/" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Startseite
+                </Link>
+                <Link href={{ pathname: "/uber-mich" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Über Mich
+                </Link>
+                <Link href={{ pathname: "/leistungen" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Leistungen
+                </Link>
+                <Link href={{ pathname: "/preisliste" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Preisliste
+                </Link>
+                <Link href={{ pathname: "/kontakt" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Kontakt
+                </Link>
+              </nav>
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={3} direction="up">
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Navigation</h3>
-              <nav className="flex flex-col space-y-2" aria-label="Footer Navigation">
-                <Link href={{ pathname: "/" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Startseite
+              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Leistungen</h3>
+              <nav className="grid grid-cols-1 gap-3" aria-label="Leistungen Navigation">
+                <Link href={{ pathname: "/leistungen", hash: "gesundheitstraining" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Gesundheitstraining
                 </Link>
-                <Link href={{ pathname: "/uber-mich" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Über Mich
+                <Link href={{ pathname: "/leistungen", hash: "tapen" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Tapen
                 </Link>
-                <Link href={{ pathname: "/leistungen" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Leistungen
-                </Link>
-                <Link href={{ pathname: "/leistungen", hash: "massage" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Massagen
-                </Link>
-                <Link href={{ pathname: "/leistungen", hash: "yoga" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Yoga & Pilates
-                </Link>
-                <Link href={{ pathname: "/preisliste" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Preisliste
-                </Link>
-                <Link href={{ pathname: "/kontakt" }} className="text-nude-700 hover:text-primary transition-colors">
-                  Kontakt
+                <Link href={{ pathname: "/leistungen", hash: "massage" }} className="text-nude-700 hover:text-primary transition-colors py-1">
+                  Massage
                 </Link>
               </nav>
             </div>
@@ -115,15 +109,18 @@ export default function Footer() {
 
         <div className="mt-12 pt-6 border-t border-nude-200">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-nude-600">
-              &copy; {currentYear} Physiotherapie Amrum - Leonie Schlör. Alle Rechte vorbehalten.
+            <p className="text-sm text-nude-600 text-center sm:text-left">
+              &copy; {currentYear} Leonie Schlör. Alle Rechte vorbehalten.
             </p>
-            <div className="flex gap-4">
-              <Link href={{ pathname: "/impressum" }} className="text-sm text-nude-600 hover:text-primary transition-colors">
+            <div className="flex gap-6">
+              <Link href={{ pathname: "/impressum" }} className="text-sm text-nude-600 hover:text-primary transition-colors py-1">
                 Impressum
               </Link>
-              <Link href={{ pathname: "/datenschutz" }} className="text-sm text-nude-600 hover:text-primary transition-colors">
+              <Link href={{ pathname: "/datenschutz" }} className="text-sm text-nude-600 hover:text-primary transition-colors py-1">
                 Datenschutz
+              </Link>
+              <Link href={{ pathname: "/agb" }} className="text-sm text-nude-600 hover:text-primary transition-colors py-1">
+                AGB
               </Link>
             </div>
           </div>

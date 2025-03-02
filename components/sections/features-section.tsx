@@ -25,9 +25,9 @@ export interface FeaturesSectionProps {
  * A features section to showcase the different therapy services offered
  */
 export function FeaturesSection({
-  title = "Unsere Leistungen",
+  title = "Meine Leistungen",
   subtitle = "Professionelle Therapie",
-  description = "Wir bieten eine Vielzahl von Behandlungsmethoden an, um Ihre Gesundheit zu verbessern und Schmerzen zu lindern.",
+  description = "Ich biete verschiedene Behandlungsmethoden an, um Ihre Gesundheit zu verbessern und Schmerzen zu lindern.",
   features = defaultFeatures,
   className,
 }: FeaturesSectionProps) {
@@ -36,7 +36,7 @@ export function FeaturesSection({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
       },
     },
   }
@@ -47,7 +47,7 @@ export function FeaturesSection({
       opacity: 1, 
       y: 0, 
       transition: { 
-        duration: 0.5,
+        duration: 0.4,
         ease: [0.22, 1, 0.36, 1] 
       } 
     },
@@ -72,7 +72,7 @@ export function FeaturesSection({
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {features.map((feature) => (
             <motion.div
@@ -119,39 +119,21 @@ export function FeaturesSection({
 
 const defaultFeatures: Feature[] = [
   {
-    id: "klassische-massage",
+    id: "massage",
     icon: "massage",
-    title: "Klassische Massage",
+    title: "Massage",
     description: "Entspannende und regenerierende Massagen zur Lösung von Verspannungen und zur Förderung der Durchblutung."
   },
   {
-    id: "physiotherapie",
-    icon: "physiotherapy",
-    title: "Physiotherapie",
-    description: "Individuelle Behandlungen zur Schmerzlinderung und Verbesserung der Beweglichkeit bei verschiedenen Beschwerden."
-  },
-  {
-    id: "manuelle-therapie",
-    icon: "rehabilitation",
-    title: "Manuelle Therapie",
-    description: "Gezielte Behandlung von Funktionsstörungen des Bewegungsapparates durch spezielle Handgriffe."
-  },
-  {
-    id: "krankengymnastik",
+    id: "gesundheitstraining",
     icon: "exercise",
-    title: "Krankengymnastik",
-    description: "Übungen zur Stärkung der Muskulatur, Verbesserung der Koordination und Stabilisierung der Gelenke."
+    title: "Gesundheitstraining",
+    description: "Individuelles Training zur Stärkung der Muskulatur, Verbesserung der Koordination und Förderung Ihrer Gesundheit."
   },
   {
-    id: "wellness",
-    icon: "wellness",
-    title: "Wellness & Entspannung",
-    description: "Ganzheitliche Behandlungen zur Stressreduktion und Förderung des allgemeinen Wohlbefindens."
-  },
-  {
-    id: "yoga-pilates",
-    icon: "yoga",
-    title: "Yoga & Pilates",
-    description: "Kurse zur Stärkung von Körper und Geist, Verbesserung der Körperhaltung und Förderung der inneren Balance."
+    id: "tapen",
+    icon: "rehabilitation",
+    title: "Tapen",
+    description: "Gezielte Unterstützung von Muskeln und Gelenken durch spezielles Tape zur Schmerzlinderung und Bewegungsoptimierung."
   }
 ] 

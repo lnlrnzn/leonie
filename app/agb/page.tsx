@@ -5,9 +5,9 @@ import type { Metadata } from "next"
 import { ClientLegalSection } from "./client-components"
 
 export const metadata: Metadata = {
-  title: "Allgemeine Geschäftsbedingungen | Physiotherapie Amrum",
+  title: "Allgemeine Geschäftsbedingungen | Leonie Schlör",
   description: "Allgemeine Geschäftsbedingungen der Physiotherapie-Praxis auf Amrum. Informieren Sie sich über unsere Vertragsbedingungen.",
-  keywords: "AGB, Physiotherapie, Amrum, Geschäftsbedingungen, Vertragsbedingungen, Behandlungsvertrag",
+  keywords: "AGB, Physiotherapie, Amrum, Geschäftsbedingungen, Vertragsbedingungen, Behandlungsvertrag, Leonie Schlör",
 }
 
 export default function TermsPage() {
