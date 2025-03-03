@@ -91,25 +91,48 @@ export function ClientContactForm() {
     // Set form to submitting state
     setFormStatus('submitting');
     
-    // Prepare form data
+    // Current date in ISO format
+    const currentDate = new Date().toISOString();
+    
+    // Prepare form data in a structure optimized for make.com
     const formData = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      subject,
-      message,
-      termsAccepted,
-      date: new Date().toISOString(),
-      source: window.location.pathname // Track which page the form was submitted from
+      // Contact information
+      contact: {
+        firstName,
+        lastName,
+        fullName: `${firstName} ${lastName}`.trim(),
+        email,
+        phone: phone || "Nicht angegeben",
+      },
+      // Request details
+      request: {
+        subject,
+        message,
+        date: currentDate,
+        formattedDate: new Date().toLocaleDateString('de-DE', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      },
+      // Metadata
+      meta: {
+        source: window.location.pathname,
+        url: window.location.href,
+        timestamp: currentDate,
+        termsAccepted: termsAccepted
+      }
     };
     
     try {
-      // Send data to webhook
+      // Send data to make.com webhook
       const response = await fetch('https://hook.eu2.make.com/5mxj2n0ahdjp0e5dyriwed8wh9clsh2c', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(formData),
       });
@@ -117,6 +140,7 @@ export function ClientContactForm() {
       if (response.ok) {
         // Success state
         setFormStatus('success');
+        console.log('Form submitted successfully to make.com');
         
         // Reset form after successful submission
         setFirstName('');
@@ -127,15 +151,17 @@ export function ClientContactForm() {
         setMessage('');
         setTermsAccepted(false);
       } else {
-        // Error state
+        // Error state with more detailed information
+        const errorText = await response.text().catch(() => 'Unknown error');
+        console.error('Form submission error:', response.status, errorText);
         setFormStatus('error');
-        setErrorMessage('Es gab ein Problem bei der Übermittlung. Bitte versuchen Sie es später noch einmal.');
+        setErrorMessage(`Es gab ein Problem bei der Übermittlung (${response.status}). Bitte versuchen Sie es später noch einmal.`);
       }
     } catch (error) {
       // Network or other error
+      console.error('Form submission network error:', error);
       setFormStatus('error');
-      setErrorMessage('Es gab ein technisches Problem. Bitte versuchen Sie es später noch einmal.');
-      console.error('Form submission error:', error);
+      setErrorMessage('Es gab ein technisches Problem mit der Verbindung. Bitte versuchen Sie es später noch einmal.');
     }
   };
 

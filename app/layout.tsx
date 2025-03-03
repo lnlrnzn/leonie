@@ -7,6 +7,7 @@ import Footer from "@/components/footer"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import Script from "next/script"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -121,6 +122,7 @@ export default function RootLayout({
         <main className="flex-1 pt-16">{children}</main>
         <Footer />
         <Toaster />
+        <Analytics />
 
         {/* Strukturierte Daten für lokales Unternehmen */}
         <Script id="structured-data" type="application/ld+json" strategy="afterInteractive">
