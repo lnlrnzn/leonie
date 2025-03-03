@@ -3,13 +3,11 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, createContext, useContext } from "react"
+import { CheckCircle, Loader2 } from "lucide-react" // Import icons for status
 
 // Context for sharing animation state between parent and children
-export const HeroSectionContext = React.createContext({ 
-  isHeroSection: false, 
-  shouldAnimate: false 
-});
+const HeroSectionContext = createContext({ shouldAnimateImmediately: false });
 
 export function ClientContactCard({
   icon,
@@ -27,35 +25,137 @@ export function ClientContactCard({
   delay: number
 }) {
   // Use the hero section context
-  const { isHeroSection, shouldAnimate } = React.useContext(HeroSectionContext);
+  const { shouldAnimateImmediately } = useContext(HeroSectionContext);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  
+  // For rows in the second section, animate immediately with staggered delay
+  useEffect(() => {
+    if (shouldAnimateImmediately) {
+      // Stagger the animations slightly based on index
+      const timer = setTimeout(() => setShouldAnimate(true), 100 + delay * 50);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldAnimateImmediately, delay]);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
-      {...(isHeroSection
+      {...(shouldAnimateImmediately 
         ? { animate: shouldAnimate ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 } }
-        : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } }
+        : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.1 } }
       )}
-      transition={{ delay, duration: 0.25 }}
+      transition={{ duration: 0.25 }}
       className="rounded-xl border bg-background p-6 shadow-sm"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 mb-4">
-        {icon}
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 mt-1">{icon}</div>
+        <div className="space-y-2">
+          <h3 className="font-medium">{title}</h3>
+          <div className="text-muted-foreground">{content}</div>
+          {linkText && linkHref && (
+            <Button variant="link" className="px-0 h-auto mt-2" asChild>
+              <a href={linkHref}>{linkText}</a>
+            </Button>
+          )}
+        </div>
       </div>
-      <h3 className="font-medium">{title}</h3>
-      <div className="text-muted-foreground mt-1">
-        {content}
-      </div>
-      {linkText && linkHref && (
-        <Button variant="link" className="px-0 h-auto mt-2" asChild>
-          <a href={linkHref}>{linkText}</a>
-        </Button>
-      )}
     </motion.div>
   )
 }
 
 export function ClientContactForm() {
+  // Form states
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
+  // Form field states
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form - this is in addition to HTML5 validation
+    if (!firstName || !lastName || !email || !subject || !message || !termsAccepted) {
+      setFormStatus('error');
+      setErrorMessage('Bitte füllen Sie alle erforderlichen Felder aus.');
+      return;
+    }
+
+    // Set form to submitting state
+    setFormStatus('submitting');
+    
+    // Prepare form data
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      subject,
+      message,
+      termsAccepted,
+      date: new Date().toISOString(),
+      source: window.location.pathname // Track which page the form was submitted from
+    };
+    
+    try {
+      // Send data to webhook
+      const response = await fetch('https://hook.eu2.make.com/5mxj2n0ahdjp0e5dyriwed8wh9clsh2c', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        // Success state
+        setFormStatus('success');
+        
+        // Reset form after successful submission
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setSubject('');
+        setMessage('');
+        setTermsAccepted(false);
+      } else {
+        // Error state
+        setFormStatus('error');
+        setErrorMessage('Es gab ein Problem bei der Übermittlung. Bitte versuchen Sie es später noch einmal.');
+      }
+    } catch (error) {
+      // Network or other error
+      setFormStatus('error');
+      setErrorMessage('Es gab ein technisches Problem. Bitte versuchen Sie es später noch einmal.');
+      console.error('Form submission error:', error);
+    }
+  };
+
+  // Reset form status after some time when showing success/error
+  useEffect(() => {
+    if (formStatus === 'success' || formStatus === 'error') {
+      const timer = setTimeout(() => {
+        if (formStatus === 'success') {
+          // Keep success state longer
+          setTimeout(() => setFormStatus('idle'), 5000);
+        } else {
+          setFormStatus('idle');
+        }
+        setErrorMessage(null);
+      }, formStatus === 'error' ? 5000 : 8000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [formStatus]);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -72,7 +172,34 @@ export function ClientContactForm() {
           </p>
         </div>
 
-        <form className="space-y-4" data-autofill="false">
+        {/* Success message */}
+        {formStatus === 'success' && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="bg-green-50 border border-green-200 text-green-800 rounded-md p-4 flex items-start"
+          >
+            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="font-medium">Anfrage erfolgreich gesendet!</h3>
+              <p className="mt-1 text-sm">Vielen Dank für Ihre Nachricht. Leonie wird sich so schnell wie möglich bei Ihnen melden.</p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Error message */}
+        {formStatus === 'error' && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4"
+          >
+            <h3 className="font-medium">Es ist ein Fehler aufgetreten</h3>
+            <p className="mt-1 text-sm">{errorMessage || 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.'}</p>
+          </motion.div>
+        )}
+
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="first-name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -84,6 +211,9 @@ export function ClientContactForm() {
                 placeholder="Max"
                 required
                 autoComplete="given-name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                disabled={formStatus === 'submitting' || formStatus === 'success'}
               />
             </div>
             <div className="space-y-2">
@@ -96,6 +226,9 @@ export function ClientContactForm() {
                 placeholder="Mustermann"
                 required
                 autoComplete="family-name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                disabled={formStatus === 'submitting' || formStatus === 'success'}
               />
             </div>
           </div>
@@ -110,6 +243,9 @@ export function ClientContactForm() {
               placeholder="max.mustermann@example.com"
               required
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={formStatus === 'submitting' || formStatus === 'success'}
             />
           </div>
           <div className="space-y-2">
@@ -122,6 +258,9 @@ export function ClientContactForm() {
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="+49 123 4567890"
               autoComplete="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              disabled={formStatus === 'submitting' || formStatus === 'success'}
             />
           </div>
           <div className="space-y-2">
@@ -134,6 +273,9 @@ export function ClientContactForm() {
               placeholder="Terminanfrage"
               required
               autoComplete="off"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              disabled={formStatus === 'submitting' || formStatus === 'success'}
             />
           </div>
           <div className="space-y-2">
@@ -146,6 +288,9 @@ export function ClientContactForm() {
               placeholder="Ihre Nachricht an uns..."
               required
               autoComplete="off"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              disabled={formStatus === 'submitting' || formStatus === 'success'}
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -154,13 +299,29 @@ export function ClientContactForm() {
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
               required
+              checked={termsAccepted}
+              onChange={(e) => setTermsAccepted(e.target.checked)}
+              disabled={formStatus === 'submitting' || formStatus === 'success'}
             />
             <label htmlFor="terms" className="text-sm text-muted-foreground">
               Ich akzeptiere die <Link href={{ pathname: "/datenschutz" }} className="text-primary underline">Datenschutzerklärung</Link>
             </label>
           </div>
-          <Button type="submit" className="w-full">
-            Nachricht senden
+          <Button 
+            type="submit" 
+            className="w-full" 
+            disabled={formStatus === 'submitting' || formStatus === 'success'}
+          >
+            {formStatus === 'submitting' ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Wird gesendet...
+              </>
+            ) : formStatus === 'success' ? (
+              'Nachricht gesendet'
+            ) : (
+              'Nachricht senden'
+            )}
           </Button>
         </form>
       </div>
@@ -211,11 +372,8 @@ export function ClientContactSection({
     }
   }, [isHeroSection]);
 
-  // Provide the hero section context to children
-  const contextValue = { isHeroSection, shouldAnimate };
-
   return (
-    <HeroSectionContext.Provider value={contextValue}>
+    <HeroSectionContext.Provider value={{ shouldAnimateImmediately: isHeroSection && shouldAnimate }}>
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         {...(isHeroSection 
