@@ -161,6 +161,16 @@
   .img-shadow {
     @apply shadow-md;
   }
+
+  /* Konsistente interaktive Elemente */
+  .interactive-hover {
+    @apply transition-colors duration-300 hover:text-primary;
+  }
+
+  /* Konsistente Link-Styles */
+  .styled-link {
+    @apply text-primary hover:text-primary/80 transition-colors;
+  }
 }
 
 @layer components {

@@ -7,8 +7,8 @@ import { ClientServiceSection } from "./client-components"
 import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Physiotherapeutische Leistungen | Leonie Schlör",
-  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheittraining, Tapen und Massage für dein Wohlbefinden.",
+  title: "Leistungen | Leonie Schlör",
+  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage für Ihr Wohlbefinden.",
   keywords: [
     "Physiotherapie Leistungen Amrum",
     "Gesundheitstraining Amrum",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Physiotherapeutische Leistungen | Leonie Schlör",
-    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf deine Bedürfnisse abgestimmt.",
+    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf Ihre Bedürfnisse abgestimmt.",
     url: "https://physiotherapie-amrum.de/leistungen",
     images: [
       {
@@ -125,7 +125,7 @@ export default function ServicesPage() {
             Physiotherapeutische Leistungen
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Entdecke mein spezialisiertes Angebot an physiotherapeutischen Behandlungen und Therapien für dein Wohlbefinden.
+            Entdecken Sie mein spezialisiertes Angebot an physiotherapeutischen Behandlungen und Therapien für Ihr Wohlbefinden.
           </p>
         </div>
       </ClientServiceSection>
