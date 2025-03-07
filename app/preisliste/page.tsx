@@ -135,28 +135,6 @@ export default function PriceListPage() {
           </div>
         </div>
       </ClientPriceSection>
-
-      {/* CTA */}
-      <ClientPriceSection>
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Haben Sie Fragen zu meinen Preisen?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ich berate Sie gerne persönlich zu meinen Leistungen und Preisen. Kontaktieren Sie mich telefonisch oder vereinbaren Sie einen Beratungstermin.
-          </p>
-          <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
-              <Link href={{ pathname: "/kontakt" }}>
-                Jetzt Kontakt aufnehmen
-              </Link>
-            </Button>
-            <Button asChild variant="outline">
-              <Link href={{ pathname: "/leistungen" }}>
-                Alle Leistungen ansehen
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </ClientPriceSection>
     </main>
   )
 }

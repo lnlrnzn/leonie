@@ -10,6 +10,7 @@ export type AnimatedSectionProps = {
   delay?: number
   direction?: "up" | "down" | "left" | "right"
   isHero?: boolean // Explicit prop to indicate hero section
+  isFooter?: boolean // New prop to indicate footer section
 }
 
 type VariantProps = {
@@ -49,20 +50,21 @@ export function AnimatedSection({
   className,
   delay = 0,
   direction = "up",
-  isHero = false // Default to false
+  isHero = false, // Default to false
+  isFooter = false // Default to false
 }: AnimatedSectionProps) {
   // Also check className for hero sections for backward compatibility
   const isHeroSection = isHero || className?.includes('pt-');
   const [shouldAnimate, setShouldAnimate] = useState(false);
   
-  // For hero sections, trigger animation immediately
+  // For hero sections and footer sections, trigger animation immediately
   useEffect(() => {
-    if (isHeroSection) {
+    if (isHeroSection || isFooter) {
       // Small timeout to ensure DOM is ready
-      const timer = setTimeout(() => setShouldAnimate(true), 50);
+      const timer = setTimeout(() => setShouldAnimate(true), isFooter ? 100 : 50);
       return () => clearTimeout(timer);
     }
-  }, [isHeroSection]);
+  }, [isHeroSection, isFooter]);
 
   const variants = getVariants(direction)
 
@@ -71,9 +73,9 @@ export function AnimatedSection({
       className={cn("w-full", className)}
       variants={variants}
       initial="hidden"
-      {...(isHeroSection 
+      {...(isHeroSection || isFooter
         ? { animate: shouldAnimate ? "visible" : "hidden" }
-        : { whileInView: "visible", viewport: { once: true, amount: 0.2 } }
+        : { whileInView: "visible", viewport: { once: true, amount: 0.1 } } // Reduced amount for better detection
       )}
       transition={{
         duration: 0.5,

@@ -15,7 +15,7 @@
     --popover-foreground: 25 25% 12%;
 
     /* Primary - warm terracotta */
-    --primary: 22 85% 55%;
+    --primary: 13 12% 40%;
     --primary-foreground: 30 30% 98%;
 
     /* Secondary - soft sage green */
@@ -29,7 +29,7 @@
     /* Supporting colors */
     --muted: 30 15% 92%;
     --muted-foreground: 25 20% 40%;
-    --accent: 22 85% 55%;
+    --accent: 13 12% 40%;
     --accent-foreground: 30 30% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 30 30% 98%;
@@ -37,7 +37,7 @@
     /* UI elements */
     --border: 30 15% 88%;
     --input: 30 15% 88%;
-    --ring: 22 85% 55%;
+    --ring: 13 12% 40%;
 
     --radius: 0.5rem;
   }
@@ -54,7 +54,7 @@
     --popover-foreground: 30 15% 94%;
 
     /* Primary - warm terracotta adjusted for dark mode */
-    --primary: 22 65% 60%;
+    --primary: 13 15% 45%;
     --primary-foreground: 30 30% 98%;
 
     /* Secondary - soft sage green adjusted for dark mode */
@@ -68,7 +68,7 @@
     /* Supporting colors adjusted for dark mode */
     --muted: 25 20% 20%;
     --muted-foreground: 30 15% 70%;
-    --accent: 22 65% 60%;
+    --accent: 13 15% 45%;
     --accent-foreground: 30 30% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 30 15% 94%;
@@ -76,7 +76,7 @@
     /* UI elements */
     --border: 25 25% 22%;
     --input: 25 25% 22%;
-    --ring: 22 65% 60%;
+    --ring: 13 15% 45%;
   }
 }
 
@@ -94,7 +94,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight;
+    @apply font-heading tracking-tight text-primary;
   }
   
   h1 {
@@ -173,7 +173,17 @@
   }
   
   .section-title {
-    @apply relative mb-8 pb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-16 after:rounded after:bg-primary;
+    @apply relative mb-8 pb-4 text-primary font-bold tracking-tighter after:absolute after:bottom-0 after:left-0 after:h-1 after:w-16 after:rounded after:bg-primary;
+  }
+
+  /* Konsistente Sektion-Überschriften */
+  .section-heading {
+    @apply text-primary font-bold tracking-tighter;
+  }
+
+  /* Konsistente Highlight-Badges */
+  .highlight-badge {
+    @apply inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary;
   }
 }
 

@@ -17,8 +17,8 @@ export interface ContactSectionProps {
  */
 export function ContactSection({
   title = "Kontakt aufnehmen",
-  subtitle = "Ich bin für Sie da",
-  description = "Haben Sie Fragen oder möchten Sie einen Termin vereinbaren? Nutzen Sie mein Kontaktformular oder kontaktieren Sie mich direkt.",
+  subtitle = "Ich bin für dich da",
+  description = "Hast du Fragen oder möchtest du einen Termin vereinbaren? Nutze mein Kontaktformular oder kontaktiere mich direkt.",
   className,
 }: ContactSectionProps) {
   return (

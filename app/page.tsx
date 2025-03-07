@@ -12,11 +12,11 @@ const TestimonialsSection = dynamic(() => import('@/components/sections/testimon
 
 export const metadata: Metadata = {
   title: "Leonie Schlör | Professionelle Physiotherapie auf Amrum",
-  description: "Willkommen bei Leonie Schlör. Ich biete individuelle Behandlungen zur Schmerzlinderung und Verbesserung Ihrer Mobilität in entspannter Atmosphäre.",
+  description: "Willkommen bei Leonie Schlör. Ich biete individuelle Behandlungen zur Schmerzlinderung und Verbesserung deiner Mobilität in entspannter Atmosphäre.",
   keywords: "Physiotherapie, Amrum, Massage, Krankengymnastik, Manuelle Therapie, Wellness, Leonie Schlör",
   openGraph: {
     title: "Leonie Schlör | Physiotherapie auf Amrum",
-    description: "Professionelle Physiotherapie auf Amrum. Individuelle Behandlungen zur Schmerzlinderung und Verbesserung Ihrer Mobilität in entspannter Atmosphäre.",
+    description: "Professionelle Physiotherapie auf Amrum. Individuelle Behandlungen zur Schmerzlinderung und Verbesserung deiner Mobilität in entspannter Atmosphäre.",
     images: [
       {
         url: "/hero.jpg",
@@ -74,9 +74,9 @@ export default function HomePage() {
       />
 
       <HeroSection 
-        title="Physiotherapie für Ihr Wohlbefinden"
+        title="Physiotherapie für dein Wohlbefinden"
         subtitle="Leonie Schlör auf Amrum"
-        description="Erleben Sie hochwertige physiotherapeutische Behandlungen in entspannter Atmosphäre. Ich helfe Ihnen dabei, Schmerzen zu lindern und Ihre Mobilität zu verbessern."
+        description="Erlebe hochwertige physiotherapeutische Behandlungen in entspannter Atmosphäre. Ich helfe dir dabei, Schmerzen zu lindern und deine Mobilität zu verbessern."
         ctaText="Termin vereinbaren"
         ctaLink={{ pathname: "/kontakt" }}
         imageSrc="/hero.jpg"

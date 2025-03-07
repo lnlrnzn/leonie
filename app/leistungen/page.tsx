@@ -7,8 +7,8 @@ import { ClientServiceSection } from "./client-components"
 import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Leistungen | Leonie Schlör",
-  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage für Ihr Wohlbefinden.",
+  title: "Physiotherapeutische Leistungen | Leonie Schlör",
+  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheittraining, Tapen und Massage für dein Wohlbefinden.",
   keywords: [
     "Physiotherapie Leistungen Amrum",
     "Gesundheitstraining Amrum",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Physiotherapeutische Leistungen | Leonie Schlör",
-    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf Ihre Bedürfnisse abgestimmt.",
+    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf deine Bedürfnisse abgestimmt.",
     url: "https://physiotherapie-amrum.de/leistungen",
     images: [
       {
@@ -125,7 +125,7 @@ export default function ServicesPage() {
             Physiotherapeutische Leistungen
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Entdecken Sie mein spezialisiertes Angebot an physiotherapeutischen Behandlungen und Therapien für Ihr Wohlbefinden.
+            Entdecke mein spezialisiertes Angebot an physiotherapeutischen Behandlungen und Therapien für dein Wohlbefinden.
           </p>
         </div>
       </ClientServiceSection>
@@ -219,7 +219,7 @@ export default function ServicesPage() {
               </ul>
             </div>
             <p className="text-muted-foreground">
-              Jede Behandlung wird individuell auf Ihre Bedürfnisse abgestimmt. Wir berücksichtigen dabei Ihre persönlichen Ziele und erstellen einen maßgeschneiderten Trainingsplan.
+              Jede Behandlung wird individuell auf deine Bedürfnisse abgestimmt. Wir berücksichtigen dabei deine persönlichen Ziele und erstellen einen maßgeschneiderten Trainingsplan.
             </p>
           </div>
           <div className="md:col-span-2 h-full">
@@ -268,15 +268,15 @@ export default function ServicesPage() {
             <div className="space-y-2">
               <p><strong>Indikationen für ein Tape:</strong></p>
               <ul className="list-disc pl-6 space-y-1">
-                <li>Wassereinlagerungen</li>
                 <li>Muskel-, Gelenk- und Bandverletzungen</li>
                 <li>Schmerzzustände</li>
                 <li>Zur Prävention bei sportlichen Aktivitäten</li>
                 <li>Als Unterstützung im Rehabilitationsprozess</li>
+                <li>Wassereinlagerungen</li>
               </ul>
             </div>
             <p className="text-muted-foreground">
-              Die Tapetechnik wird individuell auf Ihre Beschwerden abgestimmt und kann als Einzelbehandlung oder als Teil eines umfassenden Therapiekonzepts angewendet werden.
+              Die Tapetechnik wird individuell auf deine Beschwerden abgestimmt und kann als Einzelbehandlung oder als Teil eines umfassenden Therapiekonzepts angewendet werden.
             </p>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function ServicesPage() {
               </ul>
             </div>
             <p className="text-muted-foreground">
-              Die Massage wird individuell auf Ihre Bedürfnisse abgestimmt und kann als Einzelbehandlung oder im Rahmen eines umfassenden Therapiekonzepts durchgeführt werden.
+              Die Massage wird individuell auf deine Bedürfnisse abgestimmt und kann als Einzelbehandlung oder im Rahmen eines umfassenden Therapiekonzepts durchgeführt werden.
             </p>
           </div>
           <div className="md:col-span-2 h-full">
@@ -327,9 +327,9 @@ export default function ServicesPage() {
       {/* CTA */}
       <ClientServiceSection className="bg-muted/30">
         <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Bereit für Ihre Behandlung?</h2>
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Bereit für deine Behandlung?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ich freue mich darauf, Sie auf Amrum begrüßen zu dürfen und Sie mit meinen Behandlungen auf Ihrem Weg zu mehr Wohlbefinden und Gesundheit zu begleiten.
+            Ich freue mich darauf, dich auf Amrum begrüßen zu dürfen und dich mit meinen Behandlungen auf deinem Weg zu mehr Wohlbefinden und Gesundheit zu begleiten.
           </p>
           <div className="pt-4">
             <Button asChild size="lg">

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 import { AnimatedSection } from "@/components/animated-section"
 
 export default function Footer() {
@@ -9,38 +9,18 @@ export default function Footer() {
     <footer className="bg-nude-100 py-12 border-t border-nude-200">
       <div className="container px-4 md:px-6">
         <div className="grid gap-8 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          <AnimatedSection delay={0} direction="up">
+          <AnimatedSection delay={0} direction="up" isFooter={true}>
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Leonie Schlör</h3>
-              <p className="text-nude-700 mb-6">
-                Professionelle Physiotherapie und Massage für Ihr Wohlbefinden und Ihre Gesundheit auf Amrum.
+              <h3 className="font-heading text-xl font-bold mb-4 text-primary">Leonie Schlör</h3>
+              <p className="text-nude-700">
+                Professionelle Physiotherapie und Massage für dein Wohlbefinden und deine Gesundheit auf Amrum.
               </p>
-              <div className="flex space-x-4">
-                <Link 
-                  href="https://facebook.com" 
-                  className="text-nude-600 hover:text-primary transition-colors p-2 -m-2" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Besuchen Sie mich auf Facebook"
-                >
-                  <Facebook className="h-6 w-6" />
-                </Link>
-                <Link 
-                  href="https://instagram.com" 
-                  className="text-nude-600 hover:text-primary transition-colors p-2 -m-2" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Folgen Sie mir auf Instagram"
-                >
-                  <Instagram className="h-6 w-6" />
-                </Link>
-              </div>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={1} direction="up">
+          <AnimatedSection delay={1} direction="up" isFooter={true}>
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Kontakt</h3>
+              <h3 className="font-heading text-xl font-bold mb-4 text-primary">Kontakt</h3>
               <address className="not-italic">
                 <div className="space-y-4">
                   <p className="text-nude-700 flex items-center">
@@ -66,9 +46,9 @@ export default function Footer() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={2} direction="up">
+          <AnimatedSection delay={2} direction="up" isFooter={true}>
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Navigation</h3>
+              <h3 className="font-heading text-xl font-bold mb-4 text-primary">Navigation</h3>
               <nav className="grid grid-cols-1 gap-3" aria-label="Footer Navigation">
                 <Link href={{ pathname: "/" }} className="text-nude-700 hover:text-primary transition-colors py-1">
                   Startseite
@@ -89,9 +69,9 @@ export default function Footer() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={3} direction="up">
+          <AnimatedSection delay={3} direction="up" isFooter={true}>
             <div>
-              <h3 className="font-heading text-xl font-bold mb-4 text-nude-900">Leistungen</h3>
+              <h3 className="font-heading text-xl font-bold mb-4 text-primary">Leistungen</h3>
               <nav className="grid grid-cols-1 gap-3" aria-label="Leistungen Navigation">
                 <Link href={{ pathname: "/leistungen", hash: "gesundheitstraining" }} className="text-nude-700 hover:text-primary transition-colors py-1">
                   Gesundheitstraining

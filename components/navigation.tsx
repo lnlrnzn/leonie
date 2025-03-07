@@ -38,17 +38,10 @@ export default function Navigation() {
     setIsMobileMenuOpen(false)
   }, [pathname])
 
-  // Prevent scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [isMobileMenuOpen])
+  // Toggle mobile menu handler
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   return (
     <header
@@ -87,11 +80,15 @@ export default function Navigation() {
           variant="ghost" 
           size="icon" 
           className="md:hidden" 
-          onClick={() => setIsMobileMenuOpen(true)}
-          aria-label="Open menu"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
         >
-          <Menu className="h-6 w-6" />
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </Button>
       </div>
 
@@ -99,60 +96,35 @@ export default function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            className="fixed inset-0 z-50 bg-background overflow-y-auto"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            className="fixed inset-0 top-16 z-40 bg-background overflow-y-auto max-h-[calc(100vh-4rem)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
           >
-            <div className="container flex h-16 items-center justify-between px-4">
-              <Link href={{ pathname: "/" }} className="font-heading text-2xl font-bold text-primary">
-                <HeaderWord>Leonie</HeaderWord> <HeaderWord>Schlör</HeaderWord>
-              </Link>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="h-10 w-10 rounded-full"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
             <nav className="container flex flex-col px-4 py-6">
-              {navItems.map((item, index) => (
-                <motion.div
+              {navItems.map((item) => (
+                <Link
                   key={item.href.pathname}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  href={item.href}
+                  className={cn(
+                    "text-lg font-medium py-4 transition-colors hover:text-primary block border-b border-muted",
+                    pathname === item.href.pathname ? "text-primary" : "text-muted-foreground",
+                  )}
+                  onClick={toggleMobileMenu}
+                  aria-current={pathname === item.href.pathname ? "page" : undefined}
                 >
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "text-lg font-medium py-4 transition-colors hover:text-primary block border-b border-muted",
-                      pathname === item.href.pathname ? "text-primary" : "text-muted-foreground",
-                    )}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    aria-current={pathname === item.href.pathname ? "page" : undefined}
-                  >
-                    <HeaderWord>{item.name}</HeaderWord>
-                  </Link>
-                </motion.div>
+                  {item.name}
+                </Link>
               ))}
               
-              <motion.div
-                className="mt-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: navItems.length * 0.1 + 0.1 }}
-              >
+              <div className="mt-8">
                 <Button className="w-full bg-gradient-primary" size="lg" asChild>
-                  <Link href={{ pathname: "/kontakt" }}>
+                  <Link href={{ pathname: "/kontakt" }} onClick={toggleMobileMenu}>
                     Termin vereinbaren
                   </Link>
                 </Button>
-              </motion.div>
+              </div>
             </nav>
           </motion.div>
         )}

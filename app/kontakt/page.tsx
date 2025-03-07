@@ -7,11 +7,11 @@ import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "Kontakt | Leonie Schlör",
-  description: "Kontaktieren Sie meine Physiotherapie-Praxis auf Amrum. Vereinbaren Sie einen Termin oder stellen Sie mir Ihre Fragen.",
+  description: "Kontaktiere meine Physiotherapie-Praxis auf Amrum. Vereinbare einen Termin oder stelle mir deine Fragen.",
   keywords: "Kontakt, Physiotherapie, Amrum, Termin, Anfahrt, Leonie Schlör",
   openGraph: {
     title: "Kontakt | Leonie Schlör - Physiotherapie auf Amrum",
-    description: "Vereinbaren Sie einen Termin in meiner Physiotherapie-Praxis auf Amrum. Ich freue mich auf Ihre Nachricht!",
+    description: "Vereinbare einen Termin in meiner Physiotherapie-Praxis auf Amrum. Ich freue mich auf deine Nachricht!",
     type: "website",
     url: "https://physiotherapie-amrum.de/kontakt"
   }
@@ -67,14 +67,14 @@ export default function ContactPage() {
       {/* Hero Section */}
       <ClientContactSection className="pt-24 md:pt-32">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
+          <div className="highlight-badge">
             Kontakt
           </div>
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Nehmen Sie Kontakt mit mir auf
+            Nimm Kontakt mit mir auf
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Ich freue mich auf Ihre Nachricht. Vereinbaren Sie einen Termin oder stellen Sie mir Ihre Fragen.
+            Ich freue mich auf deine Nachricht. Vereinbare einen Termin oder stelle mir deine Fragen.
           </p>
         </div>
       </ClientContactSection>
@@ -85,9 +85,9 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Kontaktinformationen</h2>
+              <h2 className="section-heading text-2xl sm:text-3xl">Kontaktinformationen</h2>
               <p className="text-muted-foreground">
-                Sie können mich telefonisch, per E-Mail oder über das Kontaktformular erreichen. Ich bemühe mich, alle Anfragen innerhalb von 24 Stunden zu beantworten.
+                Du kannst mich telefonisch, per E-Mail oder über das Kontaktformular erreichen. Ich bemühe mich, alle Anfragen innerhalb von 24 Stunden zu beantworten.
               </p>
             </div>
 
@@ -144,7 +144,7 @@ export default function ContactPage() {
 
             {/* Map */}
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Anfahrt</h2>
+              <h2 className="section-heading text-2xl sm:text-3xl">Anfahrt</h2>
               <div className="overflow-hidden rounded-xl border">
                 <div className="aspect-video w-full">
                   <iframe 
@@ -183,7 +183,7 @@ export default function ContactPage() {
       <ClientContactSection>
         <div className="space-y-6 max-w-3xl mx-auto">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Häufig gestellte Fragen</h2>
+            <h2 className="section-heading text-2xl sm:text-3xl">Häufig gestellte Fragen</h2>
             <p className="text-muted-foreground">
               Antworten auf die am häufigsten gestellten Fragen zu meinen Leistungen und Terminen.
             </p>
@@ -205,9 +205,9 @@ export default function ContactPage() {
       {/* CTA */}
       <ClientContactSection className="bg-muted/30">
         <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Bereit für Ihren ersten Termin?</h2>
+          <h2 className="section-heading text-2xl sm:text-3xl">Bereit für deinen ersten Termin?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Kontaktieren Sie mich telefonisch oder über das Kontaktformular, um einen Termin zu vereinbaren. Ich freue mich darauf, Sie in meiner Praxis begrüßen zu dürfen.
+            Kontaktiere mich telefonisch oder über das Kontaktformular, um einen Termin zu vereinbaren. Ich freue mich darauf, dich in meiner Praxis begrüßen zu dürfen.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild>
@@ -233,19 +233,19 @@ export default function ContactPage() {
 const faqs = [
   {
     question: "Wie kann ich einen Termin vereinbaren?",
-    answer: "Sie können einen Termin telefonisch, per E-Mail oder über mein Kontaktformular vereinbaren. Ich bemühe mich, Ihnen zeitnah einen passenden Termin anzubieten."
+    answer: "Du kannst einen Termin telefonisch, per E-Mail oder über mein Kontaktformular vereinbaren. Ich bemühe mich, dir zeitnah einen passenden Termin anzubieten."
   },
   {
     question: "Benötige ich eine Überweisung vom Arzt?",
-    answer: "Für eine Behandlung auf Kassenrezept benötigen Sie eine Verordnung Ihres Arztes. Für Selbstzahlerleistungen ist keine ärztliche Überweisung erforderlich."
+    answer: "Für eine Behandlung auf Kassenrezept benötigst du eine Verordnung deines Arztes. Für Selbstzahlerleistungen ist keine ärztliche Überweisung erforderlich."
   },
   {
     question: "Welche Unterlagen sollte ich zum ersten Termin mitbringen?",
-    answer: "Bitte bringen Sie zum ersten Termin Ihre Versichertenkarte, ggf. die ärztliche Verordnung, relevante Befunde und bequeme Kleidung mit."
+    answer: "Bitte bringe zum ersten Termin deine Versichertenkarte, ggf. die ärztliche Verordnung, relevante Befunde und bequeme Kleidung mit."
   },
   {
     question: "Werden die Kosten von der Krankenkasse übernommen?",
-    answer: "Bei Vorlage einer ärztlichen Verordnung übernehmen die gesetzlichen Krankenkassen einen Großteil der Kosten. Es fällt lediglich eine gesetzliche Zuzahlung an, sofern Sie nicht von dieser befreit sind."
+    answer: "Bei Vorlage einer ärztlichen Verordnung übernehmen die gesetzlichen Krankenkassen einen Großteil der Kosten. Es fällt lediglich eine gesetzliche Zuzahlung an, sofern du nicht von dieser befreit bist."
   },
   {
     question: "Wie lange dauert eine Behandlung?",

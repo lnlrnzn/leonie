@@ -84,7 +84,7 @@ export function ClientContactForm() {
     // Validate form - this is in addition to HTML5 validation
     if (!firstName || !lastName || !email || !subject || !message || !termsAccepted) {
       setFormStatus('error');
-      setErrorMessage('Bitte füllen Sie alle erforderlichen Felder aus.');
+      setErrorMessage('Bitte fülle alle erforderlichen Felder aus.');
       return;
     }
 
@@ -155,13 +155,13 @@ export function ClientContactForm() {
         const errorText = await response.text().catch(() => 'Unknown error');
         console.error('Form submission error:', response.status, errorText);
         setFormStatus('error');
-        setErrorMessage(`Es gab ein Problem bei der Übermittlung (${response.status}). Bitte versuchen Sie es später noch einmal.`);
+        setErrorMessage(`Es gab ein Problem bei der Übermittlung (${response.status}). Bitte versuche es später noch einmal.`);
       }
     } catch (error) {
       // Network or other error
       console.error('Form submission network error:', error);
       setFormStatus('error');
-      setErrorMessage('Es gab ein technisches Problem mit der Verbindung. Bitte versuchen Sie es später noch einmal.');
+      setErrorMessage('Es gab ein technisches Problem mit der Verbindung. Bitte versuche es später noch einmal.');
     }
   };
 
@@ -192,9 +192,9 @@ export function ClientContactForm() {
     >
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Schreiben Sie Mir</h2>
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">Schreib mir</h2>
           <p className="text-muted-foreground">
-            Füllen Sie das Formular aus und ich melde mich schnellstmöglich bei Ihnen.
+            Fülle das Formular aus und ich melde mich schnellstmöglich bei dir.
           </p>
         </div>
 
@@ -208,7 +208,7 @@ export function ClientContactForm() {
             <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
             <div>
               <h3 className="font-medium">Anfrage erfolgreich gesendet!</h3>
-              <p className="mt-1 text-sm">Vielen Dank für Ihre Nachricht. Leonie wird sich so schnell wie möglich bei Ihnen melden.</p>
+              <p className="mt-1 text-sm">Vielen Dank für deine Nachricht. Leonie wird sich so schnell wie möglich bei dir melden.</p>
             </div>
           </motion.div>
         )}
@@ -221,7 +221,7 @@ export function ClientContactForm() {
             className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4"
           >
             <h3 className="font-medium">Es ist ein Fehler aufgetreten</h3>
-            <p className="mt-1 text-sm">{errorMessage || 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.'}</p>
+            <p className="mt-1 text-sm">{errorMessage || 'Bitte versuche es erneut oder kontaktiere uns telefonisch.'}</p>
           </motion.div>
         )}
 
@@ -311,13 +311,12 @@ export function ClientContactForm() {
             <textarea
               id="message"
               className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              placeholder="Ihre Nachricht an uns..."
+              placeholder="Deine Nachricht an uns..."
               required
-              autoComplete="off"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               disabled={formStatus === 'submitting' || formStatus === 'success'}
-            />
+            ></textarea>
           </div>
           <div className="flex items-center space-x-2">
             <input

@@ -27,7 +27,7 @@ export interface FeaturesSectionProps {
 export function FeaturesSection({
   title = "Meine Leistungen",
   subtitle = "Professionelle Therapie",
-  description = "Ich biete verschiedene Behandlungsmethoden an, um Ihre Gesundheit zu verbessern und Schmerzen zu lindern.",
+  description = "Ich biete verschiedene Behandlungsmethoden an, um deine Gesundheit zu verbessern und Schmerzen zu lindern.",
   features = defaultFeatures,
   className,
 }: FeaturesSectionProps) {
@@ -128,7 +128,7 @@ const defaultFeatures: Feature[] = [
     id: "gesundheitstraining",
     icon: "exercise",
     title: "Gesundheitstraining",
-    description: "Individuelles Training zur Stärkung der Muskulatur, Verbesserung der Koordination und Förderung Ihrer Gesundheit."
+    description: "Individuelles Training zur Stärkung der Muskulatur, Verbesserung der Koordination und Förderung deiner Gesundheit."
   },
   {
     id: "tapen",
