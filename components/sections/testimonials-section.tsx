@@ -211,7 +211,7 @@ const defaultTestimonials: Testimonial[] = [
   {
     id: "testimonial-1",
     content:
-      "Nach kurzer unproblematischer Terminabsprache erhielt ich mehrere Behandlungen. Leonie ging mit großer Fachkompetenz und ihrer freundlichen, zugewandten und einfühlsamen Kunst auf meine krankheitsbedingten Einschränkungen ein. Ihre zusätzlichen motivierenden Übungsempfehlungen sind super alltagstauglich. Ich kann Leonie nur weiterempfehlen. Vielen lieben Dank nochmal und alles Gute!",
+      "Nach kurzfristiger unproblematischer Terminabsprache erhielt ich mehrere Behandlungen. Leonie ging mit großer Fachkompetenz und ihrer freundlichen, zugewandten und einfühlsamen Art auf meine krankheitsbedingten Einschränkungen ein. Ihre zusätzlichen motivierenden Übungsempfehlungen sind super alltagstauglich. Ich kann Leonie nur weiterempfehlen. Vielen lieben Dank nochmal und alles Gute!",
     author: "M HA",
     role: "",
     rating: 5,
@@ -219,7 +219,7 @@ const defaultTestimonials: Testimonial[] = [
   {
     id: "testimonial-2",
     content:
-      "Ich habe nach einem Verdrehungstrauma einen Meniskusriss im rechten Knie und wurde von Leonie 7 mal kompetent behandelt. Erst langsam durch Lösen der muskulären Verklebungen, dann Kräftigung der Muskulatur rund ums Knie zur Stabilisierung des Gelenks. Nach 10 Tagen hatte ich weniger Schmerzen und eine deutlich bessere Beweglichkeit. Danke für die Lebensqualität und das wahrscheinliche Aufschieben der Arthroskopie, falls sie überhaupt nötig wird. Alles Gute Leonie",
+      "Ich habe nach einem Verdrehungstrauma einen Meniskusriss im rechten Knie und wurde von Leonie 7 mal kompetent behandelt. Zuerst langsam durch Lockerung der muskulären Verklebungen, dann Stärkung der Muskeln um das Knie zur Stabilisierung des Gelenks. Ich hatte nach 10 Tagen weniger Schmerzen und eine viel bessere Mobilität. Vielen Dank für die Lebensqualität und vermutlich Verschiebung der Arthroskopie, falls die überhaupt noch nötig wird. Alles Gute Leonie",
     author: "Beatrix Holthuysen",
     role: "",
     rating: 5,
@@ -227,7 +227,7 @@ const defaultTestimonials: Testimonial[] = [
   {
     id: "testimonial-3",
     content:
-      "Sehr kompetent, unkompliziert und freundlich :-) Wir hatten innerhalb eines Tages einen Termin für eine Massage in unserer Ferienwohnung in Norddorf. Leonie ist ausgebildete Physiotherapeutin und ist sehr gut auf unsere Wünsche eingegangen. Wir empfehlen sie gerne weiter und ihr werdet bei eurem nächsten Besuch auf Amrum bestimmt wieder bei Leonie zur Massage gehen.",
+      "Sehr kompetent, unkompliziert und freundlich :-) Wir hatten innerhalb von einem Tag einen Termin für eine Massage in unserer Ferienwohnung in Norddorf. Leonie ist ausgebildete Physiotherapeutin und ist sehr gut auf unsere Bedürfnisse eingegangen. Wir empfehlen sie sehr gerne weiter und beim nächsten Besuch auf Amrum gibt's unbedingt wieder eine Massage mit Leonie.",
     author: "Michael Heck",
     role: "",
     rating: 5,
