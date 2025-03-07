@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://physiotherapie-amrum.de/sitemap.xml
+Sitemap: https://physio-amrum.com/sitemap.xml
 
 # Disallow duplicate content
 Disallow: /assets/

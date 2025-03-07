@@ -9,6 +9,25 @@ export const metadata: Metadata = {
   title: "Preisliste | Leonie Schlör",
   description: "Preisübersicht für meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage.",
   keywords: "Preisliste, Kosten, Physiotherapie, Massage, Tapen, Gesundheitstraining, Amrum, Privatpatienten, Selbstzahler",
+  alternates: {
+    canonical: "/preisliste",
+  },
+  openGraph: {
+    title: "Preisliste | Physiotherapie Amrum",
+    description: "Transparente Preisübersicht für alle physiotherapeutischen Behandlungen: Gesundheitstraining, Tapen und Massage auf Amrum.",
+    type: "website",
+    url: "https://physio-amrum.com/preisliste",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Preisliste - Physiotherapie Amrum mit Leonie Schlör"
+      }
+    ]
+  }
 }
 
 interface Service {

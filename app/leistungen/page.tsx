@@ -8,7 +8,7 @@ import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "Leistungen | Leonie Schlör",
-  description: "Entdecken Sie meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage für Ihr Wohlbefinden.",
+  description: "Entdecke meine physiotherapeutischen Leistungen auf Amrum: Gesundheitstraining, Tapen und Massage für dein Wohlbefinden.",
   keywords: [
     "Physiotherapie Leistungen Amrum",
     "Gesundheitstraining Amrum",
@@ -24,8 +24,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Physiotherapeutische Leistungen | Leonie Schlör",
-    description: "Entdecken Sie meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf Ihre Bedürfnisse abgestimmt.",
-    url: "https://physiotherapie-amrum.de/leistungen",
+    description: "Entdecke meine spezialisierten Behandlungen: Gesundheitstraining, Tapen und Massage - individuell auf deine Bedürfnisse abgestimmt.",
+    url: "https://physio-amrum.com/leistungen",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    type: "website",
     images: [
       {
         url: "/Massage.webp",
@@ -55,8 +58,8 @@ export default function ServicesPage() {
             "@context": "https://schema.org",
             "@type": "MedicalBusiness",
             name: "Physiotherapie Amrum - Leonie Schlör",
-            url: "https://physiotherapie-amrum.de/leistungen",
-            image: "https://physiotherapie-amrum.de/Massage.webp",
+            url: "https://physio-amrum.com/leistungen",
+            image: "https://physio-amrum.com/Massage.webp",
             telephone: "+49 173 6414846",
             email: "leonieschloer.physio@gmail.com",
             priceRange: "$$",

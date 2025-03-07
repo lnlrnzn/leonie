@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Leonie Schlör | Physiotherapie auf Amrum",
     description: "Professionelle Physiotherapie auf Amrum. Individuelle Behandlungen zur Schmerzlinderung und Verbesserung deiner Mobilität in entspannter Atmosphäre.",
+    url: "https://physio-amrum.com",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    type: "website",
     images: [
       {
         url: "/hero.jpg",
@@ -40,9 +44,9 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "HealthAndBeautyBusiness",
             name: "Leonie Schlör - Physiotherapie auf Amrum",
-            image: "https://physiotherapie-amrum.de/hero.jpg",
-            "@id": "https://physiotherapie-amrum.de",
-            url: "https://physiotherapie-amrum.de",
+            image: "https://physio-amrum.com/hero.jpg",
+            "@id": "https://physio-amrum.com",
+            url: "https://physio-amrum.com",
             telephone: "+49 173 6414846",
             priceRange: "$$",
             address: {

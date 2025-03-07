@@ -15,7 +15,23 @@ export const metadata: Metadata = {
     nocache: true
   },
   alternates: {
-    canonical: "https://physiotherapie-amrum.de/impressum"
+    canonical: "/impressum",
+  },
+  openGraph: {
+    title: "Impressum | Physiotherapie auf Amrum",
+    description: "Rechtliche Informationen zur Physiotherapie-Praxis von Leonie Schlör auf Amrum.",
+    type: "website",
+    url: "https://physio-amrum.com/impressum",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Impressum - Physiotherapie Amrum mit Leonie Schlör"
+      }
+    ]
   }
 }
 
@@ -35,13 +51,13 @@ export default function ImprintPage() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://physiotherapie-amrum.de"
+                "item": "https://physio-amrum.com"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Impressum",
-                "item": "https://physiotherapie-amrum.de/impressum"
+                "item": "https://physio-amrum.com/impressum"
               }
             ]
           })

@@ -26,7 +26,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Über Mich | Leonie Schlör",
     description: "Lerne Leonie Schlör kennen - deine Physiotherapeutin auf Amrum mit langjähriger Erfahrung und Leidenschaft für ganzheitliche Therapie.",
-    url: "https://physiotherapie-amrum.de/uber-mich",
+    url: "https://physio-amrum.com/uber-mich",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    type: "website",
     images: [
       {
         url: "/ueber-mich.jpg",
@@ -58,8 +61,8 @@ export default function AboutPage() {
             name: "Leonie Schlör",
             jobTitle: "Physiotherapeutin",
             description: "Physiotherapeutin auf Amrum mit Spezialisierung in Tape, Massage und Gesundheitstraining",
-            url: "https://physiotherapie-amrum.de/uber-mich",
-            image: "https://physiotherapie-amrum.de/ueber-mich.jpg",
+            url: "https://physio-amrum.com/uber-mich",
+            image: "https://physio-amrum.com/ueber-mich.jpg",
             telephone: "+49 173 6414846",
             email: "leonieschloer.physio@gmail.com",
             address: {
@@ -106,7 +109,7 @@ export default function AboutPage() {
             worksFor: {
               "@type": "MedicalBusiness",
               name: "Physiotherapie Amrum - Leonie Schlör",
-              url: "https://physiotherapie-amrum.de"
+              url: "https://physio-amrum.com"
             }
           })
         }}

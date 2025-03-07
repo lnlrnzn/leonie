@@ -6,8 +6,27 @@ import { ClientLegalSection } from "./client-components"
 
 export const metadata: Metadata = {
   title: "Allgemeine Geschäftsbedingungen | Leonie Schlör",
-  description: "Allgemeine Geschäftsbedingungen der Physiotherapie-Praxis auf Amrum. Informieren Sie sich über unsere Vertragsbedingungen.",
+  description: "Allgemeine Geschäftsbedingungen der Physiotherapie-Praxis auf Amrum. Informiere dich über meine Vertragsbedingungen.",
   keywords: "AGB, Physiotherapie, Amrum, Geschäftsbedingungen, Vertragsbedingungen, Behandlungsvertrag, Leonie Schlör",
+  alternates: {
+    canonical: "/agb",
+  },
+  openGraph: {
+    title: "AGB | Physiotherapie auf Amrum",
+    description: "Allgemeine Geschäftsbedingungen der Physiotherapie-Praxis von Leonie Schlör auf Amrum.",
+    type: "website",
+    url: "https://physio-amrum.com/agb",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AGB - Physiotherapie Amrum mit Leonie Schlör"
+      }
+    ]
+  }
 }
 
 export default function TermsPage() {

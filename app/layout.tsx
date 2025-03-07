@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     default: "Physiotherapie Amrum | Leonie Schlör | Massage",
   },
   description:
-    "Professionelle Physiotherapie und Massage auf Amrum. Individuelle Behandlungen für Ihr Wohlbefinden von Leonie Schlör. Jetzt Termin vereinbaren!",
+    "Professionelle Physiotherapie und Massage auf Amrum. Individuelle Behandlungen für dein Wohlbefinden von Leonie Schlör. Jetzt Termin vereinbaren!",
   keywords: [
     "Physiotherapie Amrum",
     "Massage Amrum",
@@ -59,18 +59,18 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://physiotherapie-amrum.de"),
+  metadataBase: new URL("https://physio-amrum.com"),
   alternates: {
     canonical: "/",
     languages: {
-      'de-DE': 'https://physiotherapie-amrum.de',
+      'de-DE': 'https://physio-amrum.com',
     },
   },
   openGraph: {
     title: "Physiotherapie Amrum | Leonie Schlör | Massage",
     description:
-      "Professionelle Physiotherapie und Massage auf Amrum. Individuelle Behandlungen für Ihr Wohlbefinden von Leonie Schlör.",
-    url: "https://physiotherapie-amrum.de",
+      "Professionelle Physiotherapie und Massage auf Amrum. Individuelle Behandlungen für dein Wohlbefinden von Leonie Schlör.",
+    url: "https://physio-amrum.com",
     siteName: "Physiotherapie Amrum - Leonie Schlör",
     locale: "de_DE",
     type: "website",
@@ -131,12 +131,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "PhysicalTherapy",
               "name": "Physiotherapie Amrum - Leonie Schlör",
-              "description": "Professionelle Physiotherapie und Massage auf Amrum mit Spezialisierung auf Gesundheitstraining, Tapen und Massage. Individuelle Behandlungen für Ihr Wohlbefinden.",
-              "url": "https://physiotherapie-amrum.de",
+              "description": "Professionelle Physiotherapie und Massage auf Amrum mit Spezialisierung auf Gesundheitstraining, Tapen und Massage. Individuelle Behandlungen für dein Wohlbefinden.",
+              "url": "https://physio-amrum.com",
               "telephone": "+49 173 6414846",
               "email": "leonieschloer.physio@gmail.com",
-              "logo": "https://physiotherapie-amrum.de/logo.png",
-              "image": "https://physiotherapie-amrum.de/hero.jpg",
+              "logo": "https://physio-amrum.com/logo.png",
+              "image": "https://physio-amrum.com/hero.jpg",
               "priceRange": "$$",
               "address": {
                 "@type": "PostalAddress",

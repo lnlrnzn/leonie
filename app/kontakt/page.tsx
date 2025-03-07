@@ -13,7 +13,17 @@ export const metadata: Metadata = {
     title: "Kontakt | Leonie Schlör - Physiotherapie auf Amrum",
     description: "Vereinbare einen Termin in meiner Physiotherapie-Praxis auf Amrum. Ich freue mich auf deine Nachricht!",
     type: "website",
-    url: "https://physiotherapie-amrum.de/kontakt"
+    url: "https://physio-amrum.com/kontakt",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kontakt aufnehmen - Physiotherapie Amrum"
+      }
+    ]
   }
 }
 
@@ -29,7 +39,7 @@ export default function ContactPage() {
             "@context": "https://schema.org",
             "@type": "HealthAndBeautyBusiness",
             "name": "Physiotherapie Amrum - Leonie Schlör",
-            "url": "https://physiotherapie-amrum.de/kontakt",
+            "url": "https://physio-amrum.com/kontakt",
             "telephone": "+49 173 6414846",
             "email": "leonieschloer.physio@gmail.com",
             "address": {

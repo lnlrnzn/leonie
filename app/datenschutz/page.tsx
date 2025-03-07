@@ -7,7 +7,7 @@ import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "Datenschutz | Leonie Schlör",
-  description: "Datenschutzerklärung der Physiotherapie-Praxis von Leonie Schlör auf Amrum. Erfahren Sie, wie wir mit Ihren persönlichen Daten umgehen.",
+  description: "Datenschutzerklärung der Physiotherapie-Praxis von Leonie Schlör auf Amrum. Erfahre, wie ich mit deinen persönlichen Daten umgehe.",
   keywords: "Datenschutz, Physiotherapie, Amrum, DSGVO, Datenschutzerklärung, Privatsphäre, Leonie Schlör",
   robots: {
     index: true,
@@ -15,7 +15,23 @@ export const metadata: Metadata = {
     nocache: true
   },
   alternates: {
-    canonical: "https://physiotherapie-amrum.de/datenschutz"
+    canonical: "/datenschutz",
+  },
+  openGraph: {
+    title: "Datenschutz | Physiotherapie auf Amrum",
+    description: "Transparente Datenschutzerklärung der Physiotherapie-Praxis von Leonie Schlör auf Amrum.",
+    type: "website",
+    url: "https://physio-amrum.com/datenschutz",
+    siteName: "Physiotherapie Amrum - Leonie Schlör",
+    locale: "de_DE",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Datenschutz - Physiotherapie Amrum mit Leonie Schlör"
+      }
+    ]
   }
 }
 
@@ -35,13 +51,13 @@ export default function PrivacyPolicyPage() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://physiotherapie-amrum.de"
+                "item": "https://physio-amrum.com"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Datenschutzerklärung",
-                "item": "https://physiotherapie-amrum.de/datenschutz"
+                "item": "https://physio-amrum.com/datenschutz"
               }
             ]
           })
@@ -57,8 +73,8 @@ export default function PrivacyPolicyPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Datenschutzerklärung - Physiotherapie Amrum",
-            "description": "Informationen zum Schutz Ihrer personenbezogenen Daten gemäß DSGVO",
-            "url": "https://physiotherapie-amrum.de/datenschutz",
+            "description": "Informationen zum Schutz deiner personenbezogenen Daten gemäß DSGVO",
+            "url": "https://physio-amrum.com/datenschutz",
             "mainEntity": {
               "@type": "WebContent",
               "headline": "Datenschutzerklärung der Physiotherapie-Praxis auf Amrum",
@@ -81,7 +97,7 @@ export default function PrivacyPolicyPage() {
             Datenschutzerklärung
           </h1>
           <p className="text-muted-foreground md:text-xl">
-            Informationen zum Schutz Ihrer personenbezogenen Daten
+            Informationen zum Schutz deiner personenbezogenen Daten
           </p>
         </div>
       </ClientLegalSection>
